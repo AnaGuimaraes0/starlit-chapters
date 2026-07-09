@@ -1,0 +1,592 @@
+:root {
+    --primary: #24324A;
+    --accent: #8C6A43;
+    --background: #EFE7D3;
+    --muted: #8B4A42;
+    --title-font: 'Cormorant Garamond', serif;
+    --body-font: 'Source Sans 3', sans-serif;
+}
+
+/* ==========================================================================
+   2. ESTILO GERAL DA PÁGINA (BODY)
+   ========================================================================== */
+body {
+    /* Define a cor de fundo bege/creme que você escolheu */
+    background-color: var(--background);
+    
+    /* Aplica a fonte Source Sans 3 para todos os textos comuns */
+    font-family: var(--body-font);
+    
+    /* Define a cor padrão do texto como o seu azul-escuro */
+    color: var(--primary);
+}
+
+/* ==========================================================================
+   3. TIPOGRAFIA (TÍTULOS)
+   ========================================================================== */
+h1, h2, h3, h5, .navbar-brand {
+    /* Aplica a fonte elegante com serifa para os títulos principais */
+    font-family: var(--title-font);
+    /* Deixa os títulos em negrito */
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   4. BARRA DE NAVEGAÇÃO (NAVBAR DO BOOTSTRAP)
+   * Nota: Usamos o "!important" para dizer ao navegador que a SUA cor
+     deve mandar mais do que a cor padrão que o Bootstrap traz.
+   ========================================================================== */
+.navbar {
+    /* Força o fundo da barra a ser o seu azul-escuro */
+    background-color: var(--primary) !important;
+}
+
+/* Altera a cor do título "Starlit Chapters" na barra para branco */
+.navbar-brand {
+    color: #ffffff !important;
+}
+
+/* Altera a cor dos links do menu (Início, Biblioteca...) para branco */
+.nav-link {
+    color: #ffffffcc !important;
+}
+
+/* Efeito de passar o mouse: quando o mouse passa no link, ele ganha a cor de destaque (ouro/bronze) */
+.nav-link:hover {
+    color: var(--accent) !important;
+}
+
+/* ==========================================================================
+   5. CAIXAS DE CONTEÚDO (CONTAINERS)
+   ========================================================================== */
+.container.mt-4 {
+    /* Dá um fundo branco para cada bloco de conteúdo se destacar do fundo creme */
+    background-color: #ffffff;
+    
+    /* Cria um espaçamento interno de 25 pixels para o texto não colar nas bordas */
+    padding: 25px;
+    
+    /* Deixa os cantos das caixas suavemente arredondados */
+    border-radius: 8px;
+    
+    /* Cria uma sombra bem leve e sutil abaixo de cada caixa */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    
+    /* Aumenta a distância entre uma caixa e outra */
+    margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   6. BOTÕES
+   ========================================================================== */
+.btn-primary {
+    /* Altera a cor do botão para o seu tom de destaque (ouro/bronze) */
+    background-color: var(--accent) !important;
+    /* Altera a cor da borda do botão para a mesma cor */
+    border-color: var(--accent) !important;
+    /* Garante que o texto do botão seja branco */
+    color: #ffffff !important;
+}
+
+/* Efeito de passar o mouse no botão */
+.btn-primary:hover {
+    /* Quando passar o mouse, o botão assume o tom azul-escuro */
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* ==========================================================================
+   7. BOTÃO DE BUSCA (Customizando a classe de sucesso do Bootstrap)
+   ========================================================================== */
+.btn-outline-success {
+    /* Altera a cor do texto para o seu tom de destaque (ouro/bronze) */
+    color: var(--accent) !important;
+    
+    /* Altera a cor da borda para a mesma cor de destaque */
+    border-color: var(--accent) !important;
+}
+
+/* Efeito de passar o mouse no botão de busca */
+.btn-outline-success:hover {
+    /* Quando o mouse passar por cima, o fundo preenche com a cor de destaque */
+    background-color: var(--accent) !important;
+    
+    /* A borda continua na cor de destaque */
+    border-color: var(--accent) !important;
+    
+    /* O texto muda para branco para ficar legível com o fundo colorido */
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   8. RODAPÉ (FOOTER)
+   ========================================================================== */
+.custom-footer {
+    /* Usa o mesmo azul-escuro elegante da sua barra de navegação */
+    background-color: var(--primary);
+    
+    /* Pinta o texto principal de branco para ficar bem legível */
+    color: #ffffff;
+    
+    /* Cria um espaçamento interno de 20 pixels em cima e embaixo */
+    padding: 20px 0;
+    
+    /* IMPORTANTE: Empurra o rodapé para baixo, criando uma distância saudável 
+       entre a última caixa de conteúdo e o fim da página */
+    margin-top: 60px;
+    
+    /* Aplica a fonte de texto comum */
+    font-family: var(--body-font);
+}
+
+/* Estilo para a frase menor do rodapé */
+.footer-subtext {
+    /* Diminui um pouquinho o tamanho da letra */
+    font-size: 0.9rem;
+    
+    /* Deixa o texto ligeiramente transparente/opaco para criar uma hierarquia visual */
+    color: rgba(255, 255, 255, 0.6);
+    
+    /* Remove a margem padrão do parágrafo para não quebrar o alinhamento */
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   9. ESTRUTURA DO JUMBOTRON (DESTAQUE DA BIBLIOTECA)
+   ========================================================================== */
+.jumbotron-destaque {
+    /* Aplica o seu azul-escuro como fundo da vitrine */
+    background-color: var(--primary);
+    /* Pinta os textos internos de branco */
+    color: #ffffff;
+    /* Espaçamento interno generoso para dar elegância */
+    padding: 40px;
+    /* Cantos arredondados combinando com os containers */
+    border-radius: 8px;
+    /* Pequena sombra para dar profundidade */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Pequena etiqueta dourada acima do título do livro */
+.badge-destaque {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Título grande do livro dentro do Jumbotron */
+.titulo-destaque {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+/* Espaçamento da descrição do livro */
+.descricao-destaque {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+}
+
+/* O SEU TRUQUE: Propriedades da Imagem de Destaque */
+.img-destaque {
+    /* Define a largura máxima que a imagem pode ocupar na coluna */
+    width: 100%;
+    /* Define uma altura fixa confortável para a vitrine */
+    height: 350px;
+    
+    /* Garante que a capa preencha o espaço sem amassar ou distorcer */
+    object-fit: cover;
+    
+    /* Centraliza o foco da imagem no meio */
+    object-position: center;
+    
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   10. CARDS DO CATÁLOGO DE LIVROS
+   ========================================================================== */
+.section-title {
+    /* Cor do título da seção combinando com o tema */
+    color: var(--primary);
+}
+
+.livro-card {
+    /* Fundo branco para os cards saírem do fundo creme */
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    /* Transição suave para o efeito ao passar o mouse */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.livro-card:hover {
+    /* Levanta suavemente o card ao passar o mouse */
+    transform: translateY(-6px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustando as capas dos livros pequenos da grade */
+.card-capa {
+    /* Define uma altura padrão para todas as capas ficarem alinhadas */
+    height: 300px;
+    /* Object-fit também aqui para capas de tamanhos originais diferentes */
+    object-fit: cover;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+/* ==========================================================================
+   11. FICHÁRIO DE LEITURA
+   ========================================================================== */
+
+/* Título de página com a fonte de destaque e a linha dourada embaixo */
+.ficha-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ficha-eyebrow {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+}
+
+.ficha-titulo {
+    font-size: 3rem;
+    margin-bottom: 4px;
+}
+
+.ficha-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 260px;
+    margin: 14px auto 14px auto;
+}
+
+.ficha-rule::before,
+.ficha-rule::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background-color: var(--accent);
+    opacity: 0.5;
+}
+
+.ficha-rule span {
+    color: var(--accent);
+    font-size: 0.8rem;
+    transform: rotate(45deg);
+    display: inline-block;
+    line-height: 1;
+}
+
+.ficha-subtitulo {
+    color: rgba(36, 50, 74, 0.6);
+    font-style: italic;
+    font-size: 1.05rem;
+    font-family: var(--title-font);
+}
+
+/* Caixa padrão de cada bloco do fichário, reaproveitando o visual dos containers */
+.ficha-box {
+    background-color: #ffffff;
+    border-radius: 4px 14px 4px 14px;
+    border-left: 3px solid var(--accent);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 24px 26px;
+    height: 100%;
+}
+
+.ficha-box h5 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-family: var(--body-font);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.ficha-box h5::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: var(--accent);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+}
+
+/* Espaço reservado para colar a capa do livro (mantido no lugar, como pedido) */
+.capa-upload {
+    position: relative;
+    border: 2px dashed var(--accent);
+    border-radius: 4px 14px 4px 14px;
+    height: 100%;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--accent);
+    font-family: var(--title-font);
+    font-size: 1.1rem;
+    padding: 20px;
+    background-color: var(--background);
+}
+
+.capa-selo {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: var(--body-font);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 3px 8px;
+    background-color: #ffffff;
+    transform: rotate(3deg);
+}
+
+/* Linhas de campo simples (Título, Autor, Gênero...) */
+.ficha-campo {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.ficha-campo label {
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--primary);
+}
+
+.ficha-campo input.form-control,
+.ficha-box textarea.form-control {
+    border: none;
+    border-bottom: 1px solid rgba(36, 50, 74, 0.25);
+    border-radius: 0;
+    background: transparent;
+    padding: 2px 4px;
+}
+
+.ficha-campo input.form-control:focus,
+.ficha-box textarea.form-control:focus {
+    box-shadow: none;
+    border-bottom: 1px solid var(--accent);
+}
+
+/* Avaliação por estrelas (clicáveis) */
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font-size: 2.1rem;
+    gap: 2px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: rgba(140, 106, 67, 0.25);
+    cursor: pointer;
+    padding: 0 2px;
+    transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(140, 106, 67, 0.35);
+}
+
+/* Reserva de espaço para os ícones do "Formato de Leitura" (o usuário vai inserir) */
+.icone-reservado {
+    width: 38px;
+    height: 38px;
+    border: 1.5px dashed var(--accent);
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Opções com "bolinha" (radio) no estilo do fichário original */
+.ficha-opcao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.ficha-opcao input[type="radio"],
+.ficha-opcao input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+}
+
+.ficha-opcao label {
+    margin-bottom: 0;
+}
+
+.ficha-linha {
+    border: none;
+    border-bottom: 1px solid rgba(36, 50, 74, 0.25);
+    background: transparent;
+    width: 100%;
+    padding: 4px 2px;
+}
+
+.ficha-linha:focus {
+    outline: none;
+    border-bottom: 1px solid var(--accent);
+}
+
+/* Divisor e perguntas rápidas dentro da caixa de Avaliação */
+.ficha-divisor {
+    border: none;
+    border-top: 1px solid rgba(140, 106, 67, 0.25);
+    margin: 14px 0 10px 0;
+}
+
+.ficha-miniperg {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.ficha-opcao-mini {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.ficha-opcao-mini .form-check-input {
+    accent-color: var(--accent);
+    margin-top: 0.2em;
+}
+
+.ficha-opcao-mini .form-check-label {
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   12. PÁGINAS DE SÉRIES (RECOMENDAÇÕES / NÃO RECOMENDADOS)
+   ========================================================================== */
+
+/* Cabeçalho de cada bloco de série: nome + status lado a lado */
+.serie-cabecalho {
+    border-bottom: 1px solid rgba(140, 106, 67, 0.25);
+    padding-bottom: 12px;
+}
+
+/* Etiqueta de status da série (Completa / Em andamento) */
+.status-badge {
+    display: inline-block;
+    background-color: #ffffff;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* Estrelas de avaliação dentro dos cards de série */
+.estrelas-serie {
+    color: var(--accent);
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+}
+
+/* Bloco de informações (Status / Autor / Páginas) dentro do card */
+.livro-info {
+    font-size: 0.85rem;
+    color: rgba(36, 50, 74, 0.8);
+}
+
+.livro-info p {
+    margin-bottom: 8px;
+}
+
+.livro-info-label {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Botão "Fichário de Leitura" dentro do card */
+.btn-fichario {
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 8px 10px;
+    line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------
+   Variação visual para a página "Não Recomendados": mesma estrutura,
+   só troca o tom de destaque para um terracota mais discreto e
+   dessatura levemente as capas, reforçando o clima de "não vale a pena".
+   -------------------------------------------------------------------- */
+.pagina-tema-alerta .status-badge {
+    color: var(--muted);
+    border-color: var(--muted);
+}
+
+.pagina-tema-alerta .estrelas-serie {
+    color: var(--muted);
+}
+
+.pagina-tema-alerta .livro-info-label {
+    color: var(--muted);
+}
+
+.pagina-tema-alerta .card-capa {
+    filter: grayscale(30%);
+}
+
+.pagina-tema-alerta .livro-card {
+    border-left: 3px solid var(--muted);
+}
+
+.pagina-tema-alerta .btn-fichario {
+    background-color: var(--muted) !important;
+    border-color: var(--muted) !important;
+}
+
+.pagina-tema-alerta .btn-fichario:hover {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}

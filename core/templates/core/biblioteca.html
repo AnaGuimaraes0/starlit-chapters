@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Biblioteca</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'estilo.css' %}">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">Starlit Chapters</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Início</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{% url 'biblioteca' %}">Biblioteca</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menus</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'recomendacoes' %}">Recomendações</a></li>
+                                <li><a class="dropdown-item" href="{% url 'nao_recomendados' %}">Não Recomendados</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="lista-leitura.html">Lista de Leitura</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            <div class="jumbotron-destaque">
+                <div class="row align-items-center">
+                    <div class="col-md-7 col-text">
+                        <span class="badge-destaque">O DESTAQUE DA VEZ É...</span>
+                        <h1 class="titulo-destaque">Interion</h1>
+                        <p class="descricao-destaque">
+                            Série de fantasia épica com um mundo ricamente construído, personagens complexos e uma trama envolvente que mistura política, magia e aventura. A série é conhecida por sua escrita detalhada e pela profundidade de seus personagens, tornando-se uma leitura obrigatória para os fãs de fantasia.
+                        </p>
+                        <button class="btn btn-primary btn-lg" href="review_livros/interion.html" type="button">Saiba Mais</button>
+                    </div>
+                    <div class="col-md-5 col-img text-center">
+                        <img src="{% static 'cover-pages/Interion.jpg' %}" class="img-destaque" alt="Imagem de destaque da série Interion"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <h2 class="mb-4 section-title">Livros Recomendados</h2>
+            <a href="{% url 'recomendacoes' %}" class="btn btn-primary">Ver Mais Recomendações</a>
+            
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for livro in livros_recomendados %}
+                    <div class="col">
+                        <div class="card h-100 livro-card">
+                            {% if livro.capa %}
+                                <img src="{{ livro.capa.url }}" class="card-img-top card-capa" alt="Capa do livro {{ livro.titulo }}">
+                            {% else %}
+                                <div class="text-center py-5 bg-secondary text-white">Sem Capa</div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ livro.titulo }}</h5>
+                                <p class="card-text">
+                                    {% if livro.serie %}
+                                        {{ livro.serie }} (Vol. {{ livro.volume }})<br>
+                                    {% else %}
+                                        Volume Único<br>
+                                    {% endif %}
+                                    <strong>Autor(a):</strong> {% if livro.autor %}{{ livro.autor.nome }}{% else %}Desconhecido{% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12">
+                        <p class="text-muted">Nenhum livro recomendado com 4 ou 5 estrelas por enquanto.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title mb-0">Livros Não Recomendados</h2>
+            <!-- BOTÃO PARA A PÁGINA DE NÃO RECOMENDADOS -->
+            <a href="{% url 'nao_recomendados' %}" class="btn btn-primary">Ver Lista Completa</a>
+            </div>
+    
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for livro in livros_nao_recomendados %}
+                <div class="col">
+                    <div class="card h-100 livro-card">
+                        {% if livro.capa %}
+                        <img src="{{ livro.capa.url }}" class="card-img-top card-capa" alt="Capa do livro {{ livro.titulo }}">
+                        {% else %}
+                        <div class="text-center py-5 bg-secondary text-white">Sem Capa</div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ livro.titulo }}</h5>
+                            <p class="card-text">
+                                {% if livro.serie %}
+                                    {{ livro.serie }} (Vol. {{ livro.volume }})<br>
+                                {% else %}
+                                    Volume Único<br>
+                                {% endif %}
+                                <strong>Autor(a):</strong> {% if livro.autor %}{{ livro.autor.nome }}{% else %}Desconhecido{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">Nenhum livro com 3 estrelas ou menos cadastrado. Que ótimo sinal!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <footer class="custom-footer text-center">
+            <div class="container-fluid">
+                <p class="mb-1">&copy; 2026 Starlit Chapters. Todos os direitos reservados.</p>
+                <p class="footer-subtext">Feito para organizar sagas, mundos e madrugadas em claro lendo.</p>
+            </div>
+        </footer>
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</html>

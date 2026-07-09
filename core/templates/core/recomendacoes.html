@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="ficha-header mb-0">
+        <span class="ficha-eyebrow">Curadoria da biblioteca</span>
+        <h1 class="ficha-titulo" style="font-size: 2.6rem;">Recomendações</h1>
+        <div class="ficha-rule"><span>&#10022;</span></div>
+        <p class="ficha-subtitulo mb-0">séries e livros que valem cada página virada</p>
+    </div>
+</div>
+
+<!-- 1. Aqui chamamos o Regroup: Agrupamos os livros pela propriedade 'serie' -->
+{% regroup livros by serie as livros_agrupados_por_serie %}
+
+<!-- 2. Fazemos um loop pelos grupos criados -->
+{% for grupo_serie in livros_agrupados_por_serie %}
+
+    <div class="container mt-5">
+
+        <!-- Título da Série e Status -->
+        <!-- "grupo_serie.grouper" é a série em si. Acessamos o nome e o status dela -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 serie-cabecalho mb-4">
+            <h2 class="section-title mb-0">Série {{ grupo_serie.grouper }}</h2>
+            <!-- Aqui atende seu requisito de dizer se a série está em andamento ou completa -->
+            <span class="status-badge">{{ grupo_serie.list.0.get_status_serie_display }}</span>
+        </div>
+
+        <!-- Grid para alinhar os cards lado a lado -->
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
+
+            <!-- 3. Fazemos um loop nos livros DENTRO dessa série específica -->
+            {% for livro in grupo_serie.list %}
+                <div class="col">
+                    <div class="card h-100 livro-card">
+
+                        <!-- Capa -->
+                        <img src="{{ livro.capa.url }}" alt="Capa de {{ livro.titulo }}" class="card-img-top card-capa">
+
+                        <div class="card-body d-flex flex-column">
+
+                            <!-- Título -->
+                            <h5 class="card-title">{{ livro.titulo }}</h5>
+
+                            <!-- Lógica das Estrelas Visuais -->
+                            <!-- O Django não faz loops numéricos simples como "for i in range(5)" nativamente no HTML.
+                                 Uma técnica muito usada é criar uma lista de 5 caracteres e interar sobre ela. -->
+                            <div class="estrelas-serie mb-2">
+                                {% for i in "12345"|make_list %}{% if forloop.counter <= livro.avaliacao %}★{% else %}☆{% endif %}{% endfor %}
+                            </div>
+
+                            <!-- Informações do Livro (Status, Autor, Páginas) -->
+                            <div class="livro-info flex-grow-1">
+                                <p><span class="livro-info-label">Status</span>{{ livro.get_status_serie_display|default:'-' }}</p>
+                                <p><span class="livro-info-label">Autor(a)</span>{{ livro.autor|default:'Desconhecido' }}</p>
+                                <p><span class="livro-info-label">Páginas</span>{{ livro.num_paginas|default:'-' }}</p>
+                            </div>
+
+                            <!-- Botão Dinâmico do Fichário de Leitura -->
+                            <!-- A tag 'url' chama o nome da rota que criamos no passo 1 e passa o ID do livro -->
+                            <a href="{% url 'fichario_leitura' livro.id %}" class="btn btn-primary btn-fichario mt-3">
+                                Fichário de {{ livro.titulo|truncatechars:20 }}
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
