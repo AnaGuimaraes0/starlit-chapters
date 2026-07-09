@@ -11,5 +11,5 @@ urlpatterns = [
     
     # Rota dinâmica para o Fichário de Leitura
     # O "<int:livro_id>" permite que a URL receba o ID do livro, assim sabemos qual fichário abrir.
-    path('fichario/<int:livro_id>/', views.fichario_leitura_view, name='fichario_leitura'),
+    path('lendo-agora/', views.fichario_leitura_view, name='ficha-leitura'),
 ]
