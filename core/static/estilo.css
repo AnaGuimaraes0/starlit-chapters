@@ -590,3 +590,154 @@ h1, h2, h3, h5, .navbar-brand {
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
 }
+
+/* Placeholder para livros sem capa cadastrada, no lugar do cinza padrão do Bootstrap */
+.card-capa-placeholder {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--background);
+    color: var(--accent);
+    font-family: var(--title-font);
+    font-style: italic;
+    font-size: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 2px dashed rgba(140, 106, 67, 0.35);
+}
+
+/* ==========================================================================
+   13. PÁGINA INICIAL (HERO + DESTAQUES)
+   ========================================================================== */
+
+/* Vitrine principal, em tela cheia, com um leve "céu estrelado" de fundo
+   (gerado só com CSS, sem nenhuma imagem ilustrada) */
+.home-hero {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--primary);
+    color: #ffffff;
+    text-align: center;
+    padding: 90px 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 140px 140px, 90px 90px;
+    background-position: 0 0, 45px 60px;
+}
+
+.home-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.home-hero-eyebrow {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.home-hero h1 {
+    font-size: 3.4rem;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.home-hero-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 220px;
+    margin: 0 auto 20px auto;
+}
+
+.home-hero-rule::before,
+.home-hero-rule::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.home-hero-rule span {
+    color: var(--accent);
+    font-size: 0.8rem;
+    transform: rotate(45deg);
+    display: inline-block;
+    line-height: 1;
+}
+
+.home-hero p.hero-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 30px;
+}
+
+.home-hero-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Seção "Explore" com os três atalhos principais do site */
+.home-secao-titulo {
+    text-align: center;
+    margin: 55px 0 35px 0;
+}
+
+.home-secao-titulo h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.home-secao-titulo p {
+    color: rgba(36, 50, 74, 0.65);
+    font-style: italic;
+    font-family: var(--title-font);
+    font-size: 1.05rem;
+}
+
+/* Reaproveita o visual da .ficha-box para os cartões de atalho da home */
+.home-feature-card {
+    text-align: left;
+}
+
+.home-feature-card .icone-reservado {
+    margin-bottom: 16px;
+}
+
+.home-feature-card p {
+    color: rgba(36, 50, 74, 0.75);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
+}
+
+/* Citação de encerramento antes do rodapé */
+.home-quote {
+    text-align: center;
+    padding: 20px 20px 10px 20px;
+}
+
+.home-quote p {
+    font-family: var(--title-font);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--primary);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.5;
+}

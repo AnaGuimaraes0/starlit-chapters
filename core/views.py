@@ -39,8 +39,11 @@ def nao_recomendados_view(request):
     return render(request, 'core/nao_recomendados.html', context)
 
 
-def fichario_leitura_view(request, livro_id):
-    livro = get_object_or_404(Livro, id=livro_id)
+def fichario_leitura_view(request, livro_id=None):
+    if livro_id is not None:
+        livro = get_object_or_404(Livro, id=livro_id)
+    else:
+        livro = Livro.objects.first()
 
     context = {
         'livro': livro,

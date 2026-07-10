@@ -29,7 +29,7 @@
                                 <li><a class="dropdown-item" href="{% url 'recomendacoes' %}">Recomendações</a></li>
                                 <li><a class="dropdown-item" href="{% url 'nao_recomendados' %}">Não Recomendados</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="lista-leitura.html">Lista de Leitura</a></li>
+                                <li><a class="dropdown-item" href="#">Lista de Leitura</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -50,7 +50,7 @@
                         <p class="descricao-destaque">
                             Série de fantasia épica com um mundo ricamente construído, personagens complexos e uma trama envolvente que mistura política, magia e aventura. A série é conhecida por sua escrita detalhada e pela profundidade de seus personagens, tornando-se uma leitura obrigatória para os fãs de fantasia.
                         </p>
-                        <button class="btn btn-primary btn-lg" href="review_livros/interion.html" type="button">Saiba Mais</button>
+                        <a class="btn btn-primary btn-lg" href="review_livros/interion.html" role="button">Saiba Mais</a>
                     </div>
                     <div class="col-md-5 col-img text-center">
                         <img src="{% static 'cover-pages/Interion.jpg' %}" class="img-destaque" alt="Imagem de destaque da série Interion"/>
@@ -60,9 +60,11 @@
         </div>
 
         <div class="container mt-5">
-            <h2 class="mb-4 section-title">Livros Recomendados</h2>
-            <a href="{% url 'recomendacoes' %}" class="btn btn-primary">Ver Mais Recomendações</a>
-            
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 serie-cabecalho mb-4">
+                <h2 class="section-title mb-0">Livros Recomendados</h2>
+                <a href="{% url 'recomendacoes' %}" class="btn btn-primary btn-sm">Ver Mais Recomendações</a>
+            </div>
+
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 {% for livro in livros_recomendados %}
                     <div class="col">
@@ -70,7 +72,7 @@
                             {% if livro.capa %}
                                 <img src="{{ livro.capa.url }}" class="card-img-top card-capa" alt="Capa do livro {{ livro.titulo }}">
                             {% else %}
-                                <div class="text-center py-5 bg-secondary text-white">Sem Capa</div>
+                                <div class="card-capa-placeholder">Sem capa<br>cadastrada</div>
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ livro.titulo }}</h5>
@@ -94,20 +96,20 @@
         </div>
 
         <div class="container mt-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="section-title mb-0">Livros Não Recomendados</h2>
-            <!-- BOTÃO PARA A PÁGINA DE NÃO RECOMENDADOS -->
-            <a href="{% url 'nao_recomendados' %}" class="btn btn-primary">Ver Lista Completa</a>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 serie-cabecalho mb-4">
+                <h2 class="section-title mb-0">Livros Não Recomendados</h2>
+                <!-- BOTÃO PARA A PÁGINA DE NÃO RECOMENDADOS -->
+                <a href="{% url 'nao_recomendados' %}" class="btn btn-primary btn-sm">Ver Lista Completa</a>
             </div>
-    
-            <div class="row row-cols-1 row-cols-md-4 g-4">
+
+            <div class="row row-cols-1 row-cols-md-4 g-4 pagina-tema-alerta">
                 {% for livro in livros_nao_recomendados %}
                 <div class="col">
                     <div class="card h-100 livro-card">
                         {% if livro.capa %}
                         <img src="{{ livro.capa.url }}" class="card-img-top card-capa" alt="Capa do livro {{ livro.titulo }}">
                         {% else %}
-                        <div class="text-center py-5 bg-secondary text-white">Sem Capa</div>
+                        <div class="card-capa-placeholder">Sem capa<br>cadastrada</div>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ livro.titulo }}</h5>

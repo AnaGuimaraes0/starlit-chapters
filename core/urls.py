@@ -9,7 +9,7 @@ urlpatterns = [
     path('recomendacoes/', views.recomendacoes_view, name='recomendacoes'),
     path('nao-recomendados/', views.nao_recomendados_view, name='nao_recomendados'),
     
-    # Rota dinâmica para o Fichário de Leitura
-    # O "<int:livro_id>" permite que a URL receba o ID do livro, assim sabemos qual fichário abrir.
-    path('lendo-agora/', views.fichario_leitura_view, name='ficha-leitura'),
+    # Rota principal para o Fichário de Leitura, com ou sem id do livro
+    path('lendo-agora/', views.fichario_leitura_view, name='ficha-leitura-sem-id'),
+    path('lendo-agora/<int:livro_id>/', views.fichario_leitura_view, name='ficha-leitura'),
 ]
