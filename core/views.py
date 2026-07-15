@@ -1,3 +1,4 @@
+from django.db.models import Case, When, Value, IntegerField, F
 from django.shortcuts import get_object_or_404, render
 
 from .models import Livro
@@ -20,7 +21,21 @@ def biblioteca(request):
 
 
 def recomendacoes_view(request):
-    livros_recomendados = Livro.objects.filter(avaliacao__gte=4).order_by('-criado_at')
+    livros_base = Livro.objects.filter(avaliacao__gte=4)
+
+    livros_recomendados = livros_base.annotate(
+        is_standalone=Case(
+            When(serie__exact='', then=Value(1)),
+            When(serie__isnull=True, then=Value(1)),
+            default=Value(0),
+            output_field=IntegerField(),
+        )
+    ).order_by(
+        'is_standalone',
+        'serie',
+        F('volume').asc(nulls_last=True),
+        'titulo',
+    )
 
     context = {
         'livros': livros_recomendados,
@@ -30,7 +45,21 @@ def recomendacoes_view(request):
 
 
 def nao_recomendados_view(request):
-    livros_nao_recomendados = Livro.objects.filter(avaliacao__lte=3).order_by('-criado_at')
+    livros_base = Livro.objects.filter(avaliacao__lte=3)
+
+    livros_nao_recomendados = livros_base.annotate(
+        is_standalone=Case(
+            When(serie__exact='', then=Value(1)),
+            When(serie__isnull=True, then=Value(1)),
+            default=Value(0),
+            output_field=IntegerField(),
+        )
+    ).order_by(
+        'is_standalone',
+        'serie',
+        F('volume').asc(nulls_last=True),
+        'titulo',
+    )
 
     context = {
         'livros': livros_nao_recomendados,

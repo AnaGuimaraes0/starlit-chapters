@@ -741,3 +741,19 @@ h1, h2, h3, h5, .navbar-brand {
     margin: 0 auto;
     line-height: 1.5;
 }
+
+/* Selinho de volume, exibido ao lado do título quando o livro pertence a uma série */
+.badge-volume {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--accent);
+    background-color: rgba(140, 106, 67, 0.12);
+    border-radius: 20px;
+    padding: 2px 9px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
