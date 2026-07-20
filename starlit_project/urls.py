@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')), # O include do seu app core
+    path('conta/', include('usuarios.urls')),
 ]
 
 # IMPORTANTE: Adicione este bloco no final do arquivo!
