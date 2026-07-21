@@ -1,16 +1,22 @@
 from django.db.models import Case, When, Value, IntegerField, F
 from django.shortcuts import get_object_or_404, render
-
+from django.contrib.auth.decorators import login_required
 from .models import Livro
 
-
-def index(request):
-    return render(request, 'core/index.html')
+# =================================================================
+# PÁGINA INICIAL (DASHBOARD)
+# =================================================================
+# Se a pessoa não estiver logada, ela é chutada de volta para a URL 'login'
+@login_required(login_url='login')
+def home(request):
+    # Por enquanto, vamos apenas renderizar o HTML.
+    # No futuro, vamos puxar os livros do banco de dados aqui!
+    return render(request, 'core/home.html')
 
 
 def biblioteca(request):
-    recomendados = Livro.objects.filter(avaliacao__gte=4).order_by('-criado_at')[:4]
-    nao_recomendados = Livro.objects.filter(avaliacao__lte=3).order_by('-criado_at')[:4]
+    recomendados = Livro.objects.filter(diarios__avaliacao__gte=4).distinct().order_by('-criado_at')[:4]
+    nao_recomendados = Livro.objects.filter(diarios__avaliacao__lte=3).distinct().order_by('-criado_at')[:4]
 
     contexto = {
         'livros_recomendados': recomendados,
@@ -21,7 +27,7 @@ def biblioteca(request):
 
 
 def recomendacoes_view(request):
-    livros_base = Livro.objects.filter(avaliacao__gte=4)
+    livros_base = Livro.objects.filter(diarios__avaliacao__gte=4).distinct()
 
     livros_recomendados = livros_base.annotate(
         is_standalone=Case(
@@ -45,7 +51,7 @@ def recomendacoes_view(request):
 
 
 def nao_recomendados_view(request):
-    livros_base = Livro.objects.filter(avaliacao__lte=3)
+    livros_base = Livro.objects.filter(diarios__avaliacao__lte=3).distinct()
 
     livros_nao_recomendados = livros_base.annotate(
         is_standalone=Case(

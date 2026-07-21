@@ -1,120 +1,72 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Starlit Chapters</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'estilo.css' %}">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'index' %}">Starlit Chapters</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'biblioteca' %}">Biblioteca</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Menus
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'recomendacoes' %}">Recomendações</a></li>
-                                <li><a class="dropdown-item" href="{% url 'nao_recomendados' %}">Não Recomendados</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Lista de Leitura</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+{% extends 'core/base.html' %}
+
+{% block title %}Starlit Chapters{% endblock %}
+
+{% block extra_head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="home-hero">
+            <div class="home-hero-content">
+                <span class="home-hero-eyebrow">Bem-vindo a</span>
+                <h1>Starlit Chapters</h1>
+                <div class="home-hero-rule"><span>&#10022;</span></div>
+                <p class="hero-subtitle">
+                    Sua biblioteca pessoal para catalogar sagas, redescobrir personagens inesquecíveis
+                    e guardar cada madrugada perdida numa boa leitura.
+                </p>
+                <div class="home-hero-cta">
+                    <a href="{% url 'biblioteca' %}" class="btn btn-primary btn-lg">Explorar Biblioteca</a>
+                    <a href="{% url 'recomendacoes' %}" class="btn btn-outline-light btn-lg">Ver Recomendações</a>
                 </div>
             </div>
-        </nav>
+        </div>
+    </div>
 
-        <!-- HERO PRINCIPAL -->
-        <div class="container mt-4">
-            <div class="home-hero">
-                <div class="home-hero-content">
-                    <span class="home-hero-eyebrow">Bem-vindo a</span>
-                    <h1>Starlit Chapters</h1>
-                    <div class="home-hero-rule"><span>&#10022;</span></div>
-                    <p class="hero-subtitle">
-                        Sua biblioteca pessoal para catalogar sagas, redescobrir personagens inesquecíveis
-                        e guardar cada madrugada perdida numa boa leitura.
-                    </p>
-                    <div class="home-hero-cta">
-                        <a href="{% url 'biblioteca' %}" class="btn btn-primary btn-lg">Explorar Biblioteca</a>
-                        <a href="{% url 'recomendacoes' %}" class="btn btn-outline-light btn-lg">Ver Recomendações</a>
-                    </div>
+    <div class="container mt-5">
+
+        <div class="home-secao-titulo">
+            <h2 class="section-title">Para onde vamos hoje?</h2>
+            <p>três jeitos de mergulhar na sua estante</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="ficha-box home-feature-card h-100">
+                    <span class="icone-reservado"></span>
+                    <h5>Biblioteca</h5>
+                    <p>Todo o seu acervo catalogado num só lugar: capas, autores, séries e status de cada leitura.</p>
+                    <a href="{% url 'biblioteca' %}" class="btn btn-primary btn-sm">Ver acervo completo</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ficha-box home-feature-card h-100">
+                    <span class="icone-reservado"></span>
+                    <h5>Recomendações</h5>
+                    <p>Os livros e séries que roubaram nosso coração, organizados por saga e prontos pra virar sua próxima obsessão.</p>
+                    <a href="{% url 'recomendacoes' %}" class="btn btn-primary btn-sm">Ver recomendações</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ficha-box home-feature-card h-100">
+                    <span class="icone-reservado"></span>
+                    <h5>Não Recomendados</h5>
+                    <p>Pra você economizar tempo: as leituras que não empolgaram, com o motivo de cada nota baixa.</p>
+                    <a href="{% url 'nao_recomendados' %}" class="btn btn-primary btn-sm">Ver lista completa</a>
                 </div>
             </div>
         </div>
 
-        <!-- ATALHOS PRINCIPAIS -->
-        <div class="container mt-5">
+    </div>
 
-            <div class="home-secao-titulo">
-                <h2 class="section-title">Para onde vamos hoje?</h2>
-                <p>três jeitos de mergulhar na sua estante</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="ficha-box home-feature-card h-100">
-                        <span class="icone-reservado"></span>
-                        <h5>Biblioteca</h5>
-                        <p>Todo o seu acervo catalogado num só lugar: capas, autores, séries e status de cada leitura.</p>
-                        <a href="{% url 'biblioteca' %}" class="btn btn-primary btn-sm">Ver acervo completo</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ficha-box home-feature-card h-100">
-                        <span class="icone-reservado"></span>
-                        <h5>Recomendações</h5>
-                        <p>Os livros e séries que roubaram nosso coração, organizados por saga e prontos pra virar sua próxima obsessão.</p>
-                        <a href="{% url 'recomendacoes' %}" class="btn btn-primary btn-sm">Ver recomendações</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ficha-box home-feature-card h-100">
-                        <span class="icone-reservado"></span>
-                        <h5>Não Recomendados</h5>
-                        <p>Pra você economizar tempo: as leituras que não empolgaram, com o motivo de cada nota baixa.</p>
-                        <a href="{% url 'nao_recomendados' %}" class="btn btn-primary btn-sm">Ver lista completa</a>
-                    </div>
-                </div>
-            </div>
-
+    <div class="container mt-5">
+        <div class="home-quote">
+            <p>"Porque toda boa leitura merece ser lembrada, e todo grande livro merece uma segunda visita."</p>
         </div>
-
-        <!-- CITAÇÃO DE ENCERRAMENTO -->
-        <div class="container mt-5">
-            <div class="home-quote">
-                <p>"Porque toda boa leitura merece ser lembrada, e todo grande livro merece uma segunda visita."</p>
-            </div>
-        </div>
-
-        <footer class="custom-footer text-center">
-            <div class="container-fluid">
-                <p class="mb-1">&copy; 2026 Starlit Chapters. Todos os direitos reservados.</p>
-                <p class="footer-subtext">Feito para organizar sagas, mundos e madrugadas em claro lendo.</p>
-            </div>
-        </footer>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</html>
+    </div>
+{% endblock %}

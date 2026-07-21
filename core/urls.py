@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # Quando o endereço for vazio '', chama a função 'index' da views.py
-    path('', views.index, name='index'),
+    # Quando o endereço for vazio '', chama a função 'home' da views.py
+    path('', views.home, name='home'),
     path('biblioteca/', views.biblioteca, name='biblioteca'),
     # Rotas para as páginas de recomendações
     path('recomendacoes/', views.recomendacoes_view, name='recomendacoes'),
