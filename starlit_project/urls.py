@@ -16,14 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# IMPORTANTE: Adicione essas duas linhas abaixo de importação
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')), # O include do seu app core
-    path('conta/', include('usuarios.urls')),
+    
+    # App Usuarios (Cadastro e Login)
+    path('conta/', include('usuarios.urls')), 
+    
+    # App Pages (Landing Page assume a raiz do site)
+    path('', include('pages.urls')),
+    
+    # App Core (O Diário de Leitura foi movido para o /acervo/)
+    path('acervo/', include('core.urls')),
 ]
 
 # IMPORTANTE: Adicione este bloco no final do arquivo!

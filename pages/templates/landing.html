@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Starlit Chapters — Seu refúgio de leitura</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'CSS/estilo.css' %}">
+    </head>
+    <body class="landing-page">
+
+        <!-- ===================== NAVBAR PRÓPRIA DA LANDING ===================== -->
+        <nav class="landing-nav" id="landingNav">
+            <div class="container-fluid">
+                <a class="landing-nav-marca" href="{% url 'landing_page' %}">Starlit <span>Chapters</span></a>
+                <ul class="landing-nav-links d-none d-lg-flex">
+                    <li><a href="#o-que-e">Sobre</a></li>
+                    <li><a href="#estante">Sua Estante</a></li>
+                    <li><a href="#comunidade">Comunidade</a></li>
+                </ul>
+                <div class="landing-nav-cta">
+                    <a href="#" class="entrar">Entrar</a>
+                    <a href="#" class="btn-pill-dourado">Criar Conta</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ===================== HERO ===================== -->
+        <div class="landing-hero">
+            <div class="landing-hero-grid">
+                <div class="landing-hero-texto">
+                    <span class="landing-eyebrow">Um novo capítulo começa aqui</span>
+                    <h1>A biblioteca onde suas <em>sagas favoritas</em> ganham um lar.</h1>
+                    <p class="landing-subtitulo">
+                        Starlit Chapters é a sua biblioteca pessoal: organize tudo o que quer ler, está lendo
+                        e já leu, dê notas e resenhas, e converse sobre livros com uma comunidade que também
+                        vive dentro das páginas de alta fantasia.
+                    </p>
+                    <div class="landing-cta">
+                        <a href="#" class="btn-pill-dourado">Criar Conta Grátis</a>
+                        <a href="#" class="btn-pill-contorno">Já tenho conta</a>
+                    </div>
+                </div>
+                <div class="hero-painel">
+                    <span class="fleuron">&#10086;</span>
+                    <blockquote>"Toda grande jornada começa com a virada de uma página."</blockquote>
+                    <cite>Starlit Chapters</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== CAPÍTULO UM: O QUE É ===================== -->
+        <section class="capitulo" id="o-que-e">
+            <span class="capitulo-numeral numeral-esquerda">I</span>
+            <div class="container capitulo-conteudo">
+                <div class="capitulo-cabecalho">
+                    <span class="capitulo-eyebrow">Capítulo Um</span>
+                    <h2>O que é o Starlit Chapters</h2>
+                    <p>para quem devora épicos de 700 páginas e quer um lugar só seu</p>
+                </div>
+                <p class="paragrafo-versal">
+                    <span class="versal">S</span>tarlit Chapters nasceu para leitoras e leitores que colecionam
+                    sagas inteiras na cabeça e não têm onde guardar tudo isso. Aqui você cria sua própria
+                    biblioteca digital, separa os livros entre "Quero Ler", "Lendo" e "Lido", escreve resenhas
+                    com nota de uma a cinco estrelas e ainda encontra outras pessoas tão obcecadas quanto você
+                    por construção de mundos, tropes favoritos e finais que arrancam suspiros. Não é só um
+                    catálogo — é um refúgio.
+                </p>
+            </div>
+        </section>
+
+        <div class="friso-capitulo">
+            <div class="friso-linha"><span>&#10022;</span></div>
+        </div>
+
+        <!-- ===================== CAPÍTULO DOIS: SUA ESTANTE ===================== -->
+        <section class="capitulo" id="estante">
+            <span class="capitulo-numeral numeral-direita">II</span>
+            <div class="container capitulo-conteudo">
+                <div class="capitulo-cabecalho">
+                    <span class="capitulo-eyebrow">Capítulo Dois</span>
+                    <h2>Sua estante, do seu jeito</h2>
+                    <p>três prateleiras simples pra organizar qualquer saga</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="estante-painel">
+                            <h3>Quero Ler</h3>
+                            <span class="estante-contagem">exemplo ilustrativo</span>
+                            <div class="livro-chip">A Coroa de Cinzas Frias</div>
+                            <div class="livro-chip">O Juramento das Sombras</div>
+                            <div class="livro-chip">Crônicas do Véu Partido</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="estante-painel">
+                            <h3>Lendo</h3>
+                            <span class="estante-contagem">exemplo ilustrativo</span>
+                            <div class="livro-chip">Filha da Maré Negra</div>
+                            <div class="livro-chip">O Último Herdeiro de Ferro</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="estante-painel">
+                            <h3>Lido</h3>
+                            <span class="estante-contagem">exemplo ilustrativo</span>
+                            <div class="livro-chip">Sangue de Estrela</div>
+                            <div class="livro-chip">A Rainha de Sal e Cinza</div>
+                            <div class="livro-chip">O Pacto dos Corvos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="friso-capitulo">
+            <div class="friso-linha"><span>&#10022;</span></div>
+        </div>
+
+        <!-- ===================== CAPÍTULO TRÊS: COMUNIDADE ===================== -->
+        <section class="capitulo" id="comunidade">
+            <span class="capitulo-numeral numeral-esquerda">III</span>
+            <div class="container capitulo-conteudo">
+                <div class="capitulo-cabecalho">
+                    <span class="capitulo-eyebrow">Capítulo Três</span>
+                    <h2>Surtos e comunidade</h2>
+                    <p>porque nenhuma boa leitura deveria ficar só com você</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="comunidade-card">
+                            <h3>Resenhas com nota</h3>
+                            <div class="estrelas-preview">★★★★★</div>
+                            <p>
+                                Dê de uma a cinco estrelas pra cada livro, escreva sua resenha e monte seu
+                                próprio fichário de leitura — tudo salvo na sua conta, pronto pra revisitar
+                                quando bater a saudade de um mundo.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="comunidade-card">
+                            <h3>Grupos e clubes de leitura</h3>
+                            <div class="forum-post">
+                                <p class="forum-post-titulo">Qual trope vocês mais amam em fantasia romântica?</p>
+                                <p class="forum-post-meta">42 respostas · Clube Romantasy</p>
+                            </div>
+                            <div class="forum-post">
+                                <p class="forum-post-titulo">Teorias sobre o próximo grande plot twist</p>
+                                <p class="forum-post-meta">18 respostas · Clube Alta Fantasia</p>
+                            </div>
+                            <div class="forum-post">
+                                <p class="forum-post-titulo">Construção de universo: como vocês criam mapas?</p>
+                                <p class="forum-post-meta">7 respostas · Clube Escritoras</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== EPÍLOGO / CTA FINAL ===================== -->
+        <div class="landing-epilogo">
+            <span class="fleuron">&#10086;</span>
+            <h2>Sua próxima leitura está esperando</h2>
+            <p>Crie sua conta e comece a escrever o primeiro capítulo da sua estante hoje mesmo.</p>
+            <div class="landing-cta" style="justify-content: center;">
+                <a href="#" class="btn-pill-dourado">Criar Conta Grátis</a>
+                <a href="#" class="btn-pill-contorno">Entrar</a>
+            </div>
+        </div>
+
+        <!-- ===================== RODAPÉ / COLOFÃO ===================== -->
+        <footer class="landing-footer">
+            <div class="landing-footer-topo">
+                <div>
+                    <p class="landing-footer-marca">Starlit <span>Chapters</span></p>
+                    <p class="landing-footer-bio">
+                        Sua biblioteca pessoal para catalogar sagas, redescobrir personagens inesquecíveis
+                        e guardar cada madrugada perdida numa boa leitura.
+                    </p>
+                </div>
+                <div>
+                    <h4>Explorar</h4>
+                    <ul>
+                        <li><a href="#o-que-e">Sobre</a></li>
+                        <li><a href="#estante">Sua Estante</a></li>
+                        <li><a href="#comunidade">Comunidade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Conta</h4>
+                    <ul>
+                        <li><a href="#">Criar Conta</a></li>
+                        <li><a href="#">Entrar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="landing-footer-base">
+                <span>&copy; 2026 Starlit Chapters. Todos os direitos reservados.</span>
+                <span>Feito para organizar sagas, mundos e madrugadas em claro lendo.</span>
+            </div>
+        </footer>
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('scroll', function () {
+            var nav = document.getElementById('landingNav');
+            if (window.scrollY > 40) {
+                nav.classList.add('landing-nav-solida');
+            } else {
+                nav.classList.remove('landing-nav-solida');
+            }
+        });
+    </script>
+</html>
