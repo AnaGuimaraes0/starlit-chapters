@@ -9,7 +9,7 @@
 :root {
     --dark-bg: #111827; /* Tom levemente mais escuro para combinar com o layout */
     --gold: #C8A96B;
-    --light-text: #F6F2EA;
+    --light-text: #e4d2a8;
     --dark-card: rgba(246, 242, 234, 0.03);
             
     --font-hero: 'Cormorant Garamond', serif;
@@ -27,6 +27,14 @@ body {
 h1, h2, h3, h4, .hero-title {
     font-family: var(--font-hero);
     font-weight: 400;
+}
+
+h1, h2 {
+    color: var(--gold);
+    background: linear-gradient(135deg, #F0DFB4  0%, #C8A96B 50%, #9C7B45 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* 
@@ -61,13 +69,13 @@ nav.scrolled {
 }
 
 .nav-logo {
-    height: 56px;
+    height: 78px;
     width: auto;
     object-fit: contain;
 }
 
 .footer-logo {
-    height: 64px;
+    height: 96px;
     width: auto;
     object-fit: contain;
 }
@@ -103,7 +111,7 @@ nav.scrolled {
 }
 
 .nav-links a {
-    color: rgba(246, 242, 234, 0.7);
+    color: rgba(228, 210, 168, 0.7);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
@@ -159,21 +167,23 @@ nav.scrolled {
 }
 
 .btn-primary {
-    background-color: var(--gold);
-    color: #111827;
+    background: linear-gradient(160deg, #F3E1B8 0%, #D4B37C 35%, #B8925A 70%, #93713D 100%);
+    color: #1a1305;
     border: none;
     font-weight: 600;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.35);
 }
 
 .btn-primary:hover {
-    background-color: #d8bb80;
-    color: #111827;
+    background: linear-gradient(160deg, #FBEFCF 0%, #E3C68F 35%, #C8A96B 70%, #A6824C 100%);
+    color: #1a1305;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 4px 10px rgba(0,0,0,0.4);
 }
 
 .btn-outline {
     background-color: transparent;
     color: var(--light-text);
-    border: 1px solid rgba(246, 242, 234, 0.3);
+    border: 1px solid rgba(228, 210, 168, 0.3);
 }
 
 .btn-outline:hover {
@@ -197,9 +207,9 @@ nav.scrolled {
     background-color: var(--dark-bg);
     background-image: 
         linear-gradient(to bottom, rgba(17, 24, 39, 0.55) 0%, rgba(17, 24, 39, 0.3) 55%, rgba(17, 24, 39, 0.6) 100%),
-        url('../imgs/fundo_1.jpg');
+        url('../imgs/fundo_1.png');
     background-size: cover;
-    background-position: 62% center;
+    background-position: 12% center;
     padding: 6rem 2rem 2rem;
 }
 
@@ -211,7 +221,7 @@ nav.scrolled {
 
 .hero-subtitle {
     font-family: var(--font-ui);
-    color: rgba(246, 242, 234, 0.6);
+    color: rgba(228, 210, 168, 0.6);
     letter-spacing: 2px;
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -222,13 +232,12 @@ nav.scrolled {
     font-size: 5rem;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    color: var(--light-text);
 }
 
 .hero-description {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     margin-bottom: 2.5rem;
     max-width: 500px;
     margin-left: auto;
@@ -273,7 +282,6 @@ nav.scrolled {
 
 .section-header h2 {
     font-size: 2.5rem;
-    color: var(--light-text);
 }
 
 /* 
@@ -300,7 +308,7 @@ nav.scrolled {
 }
 
 .features-intro p {
-    color: rgba(246, 242, 234, 0.7);
+    color: rgba(228, 210, 168, 0.7);
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
@@ -329,7 +337,7 @@ nav.scrolled {
 
 .feature-card {
     background-color: var(--dark-card);
-    border: 1px solid rgba(246, 242, 234, 0.05);
+    border: 1px solid rgba(228, 210, 168, 0.05);
     padding: 2rem 1.2rem;
     border-radius: 8px;
     text-align: center;
@@ -338,7 +346,7 @@ nav.scrolled {
 
 .feature-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(200, 169, 107, 0.3);
+    border-color: rgba(228, 210, 168, 0.3);
 }
 
 .card-icon {
@@ -363,7 +371,7 @@ nav.scrolled {
 
 .feature-card p {
     font-size: 0.85rem;
-    color: rgba(246, 242, 234, 0.6);
+    color: rgba(228, 210, 168, 0.6);
     line-height: 1.5;
 }
 
@@ -407,7 +415,7 @@ nav.scrolled {
 
 .more-feature-item p {
     font-size: 0.9rem;
-    color: rgba(246, 242, 234, 0.6);
+    color: rgba(228, 210, 168, 0.6);
     line-height: 1.5;
     max-width: 250px;
 }
@@ -442,18 +450,17 @@ nav.scrolled {
 }
 
 .preview-content .section-eyebrow {
-    color: rgba(246, 242, 234, 0.6);
+    color: rgba(228, 210, 168, 0.6);
 }
 
 .preview-content h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--gold);
     line-height: 1.1;
 }
 
 .preview-content p {
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     line-height: 1.6;
     margin-bottom: 2rem;
 }
@@ -479,7 +486,7 @@ nav.scrolled {
     background-color: var(--dark-card);
     padding: 2.5rem;
     border-radius: 8px;
-    border: 1px solid rgba(246, 242, 234, 0.05);
+    border: 1px solid rgba(228, 210, 168, 0.05);
 }
 
 .testimonial-stars {
@@ -492,7 +499,7 @@ nav.scrolled {
 .testimonial-text {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     margin-bottom: 2rem;
 }
 
@@ -519,7 +526,7 @@ nav.scrolled {
 
 .author-info p {
     font-size: 0.8rem;
-    color: rgba(246, 242, 234, 0.5);
+    color: rgba(228, 210, 168, 0.5);
     margin: 0;
 }
 
@@ -565,11 +572,10 @@ nav.scrolled {
 .cta-container h2 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    color: var(--gold);
 }
 
 .cta-container p {
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     margin-bottom: 2rem;
     font-size: 1.1rem;
 }
@@ -580,12 +586,12 @@ nav.scrolled {
     display: flex;
     justify-content: space-between;
     padding: 4rem;
-    border-top: 1px solid rgba(246, 242, 234, 0.1);
+    border-top: 1px solid rgba(228, 210, 168, 0.1);
 }
 
 .brand-desc {
     font-size: 0.85rem;
-    color: rgba(246, 242, 234, 0.5);
+    color: rgba(228, 210, 168, 0.5);
     margin-top: 1.5rem;
     line-height: 1.6;
 }
@@ -600,7 +606,7 @@ nav.scrolled {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: rgba(246, 242, 234, 0.5);
+    color: rgba(228, 210, 168, 0.5);
     margin-bottom: 1.5rem;
 }
 
@@ -614,7 +620,7 @@ nav.scrolled {
 }
 
 .footer-col ul a {
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s;
@@ -632,7 +638,7 @@ nav.scrolled {
 }
 
 .social-icons svg {
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     width: 20px;
     height: 20px;
     cursor: pointer;
@@ -645,20 +651,20 @@ nav.scrolled {
 
 .newsletter-title {
     font-size: 0.8rem;
-    color: rgba(246, 242, 234, 0.8);
+    color: rgba(228, 210, 168, 0.8);
     margin-bottom: 0.3rem;
 }
 
 .newsletter-desc {
     font-size: 0.75rem;
-    color: rgba(246, 242, 234, 0.5);
+    color: rgba(228, 210, 168, 0.5);
     margin-bottom: 1rem;
 }
 
 .newsletter-input {
     display: flex;
     background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(246, 242, 234, 0.1);
+    border: 1px solid rgba(228, 210, 168, 0.1);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -674,13 +680,13 @@ nav.scrolled {
 }
 
 .newsletter-input input::placeholder {
-    color: rgba(246, 242, 234, 0.3);
+    color: rgba(228, 210, 168, 0.3);
 }
 
 .newsletter-input button {
     background: transparent;
     border: none;
-    border-left: 1px solid rgba(246, 242, 234, 0.1);
+    border-left: 1px solid rgba(228, 210, 168, 0.1);
     color: var(--gold);
     padding: 0 1rem;
     cursor: pointer;
@@ -691,5 +697,5 @@ nav.scrolled {
 }
 
 .newsletter-input button:hover {
-    background: rgba(200, 169, 107, 0.1);
+    background: rgba(228, 210, 168, 0.1);
 }

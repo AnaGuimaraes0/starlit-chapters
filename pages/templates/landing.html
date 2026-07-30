@@ -9,14 +9,14 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <link rel="stylesheet" href="{% static 'CSS/estilo.css' %}">
     </head>
     <body>
         <!-- NAVBAR -->
     <nav>
         <a href="#" class="logo">
-            <img src="{% static 'imgs/logo.png' %}" alt="Logo Starlit Chapters" class="nav-logo">
+            <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="nav-logo">
         </a>
         <ul class="nav-links">
             <li><a href="#" class="active">Início</a></li>
@@ -51,7 +51,7 @@
         <div class="features-grid">
             <div class="features-intro">
                 <div class="section-eyebrow">
-                    <i data-lucide="sparkles"></i> Sua estante pessoal
+                    <i class="ph-thin ph-sparkles"></i> Sua estante pessoal
                 </div>
                 <h2>Todos os seus livros, perfeitamente organizados.</h2>
                 <p>Acompanhe cada capítulo da sua jornada. Dos livros com os quais você sonha ler até aqueles que mudaram você.</p>
@@ -60,22 +60,22 @@
 
             <div class="cards-container">
                 <div class="feature-card">
-                    <div class="card-icon"><i data-lucide="library"></i></div>
+                    <div class="card-icon"><i class="ph-thin ph-books"></i></div>
                     <h3>Quero Ler</h3>
                     <p>Mantenha uma lista de todos os livros chamando por você.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="card-icon"><i data-lucide="book-open"></i></div>
+                    <div class="card-icon"><i class="ph-thin ph-book-open-text"></i></div>
                     <h3>Lendo Agora</h3>
                     <p>Acompanhe seu progresso e nunca mais perca sua página.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="card-icon"><i data-lucide="layers"></i></div>
+                    <div class="card-icon"><i class="ph-thin ph-stack"></i></div>
                     <h3>Concluídos</h3>
                     <p>Um belo registro de cada história que você já completou.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="card-icon"><i data-lucide="star"></i></div>
+                    <div class="card-icon"><i class="ph-thin ph-star"></i></div>
                     <h3>Favoritos</h3>
                     <p>Suas histórias mais amadas, sempre a um clique de distância.</p>
                 </div>
@@ -87,28 +87,28 @@
     <section class="more-features">
         <div class="section-header">
             <div class="section-eyebrow">
-                <i data-lucide="sparkles"></i> Mais que uma biblioteca
+                <i class="ph-thin ph-sparkle"></i> Mais que uma biblioteca
             </div>
             <h2>Tudo que um leitor precisa</h2>
         </div>
         <div class="more-features-grid">
             <div class="more-feature-item">
-                <i data-lucide="edit-3"></i>
+                <i class="ph-thin ph-pencil-simple-line"></i>
                 <h3>Escreva Resenhas</h3>
                 <p>Compartilhe seus pensamentos e avalie livros de 1 a 5 estrelas.</p>
             </div>
             <div class="more-feature-item">
-                <i data-lucide="users"></i>
+                <i class="ph-thin ph-users-three"></i>
                 <h3>Clubes de Leitura</h3>
                 <p>Participe de clubes, discuta teorias e conecte-se com leitores.</p>
             </div>
             <div class="more-feature-item">
-                <i data-lucide="flame"></i>
+                <i class="ph-thin ph-fire"></i>
                 <h3>Ofensivas de Leitura</h3>
                 <p>Mantenha-se motivado e acompanhe sua jornada de leitura.</p>
             </div>
             <div class="more-feature-item">
-                <i data-lucide="bookmark"></i>
+                <i class="ph-thin ph-bookmark-simple"></i>
                 <h3>Notas Pessoais</h3>
                 <p>Capture citações, pensamentos e memórias.</p>
             </div>
@@ -129,7 +129,7 @@
     <section class="testimonials">
         <div class="section-header">
             <div class="section-eyebrow">
-                <i data-lucide="sparkles"></i> Amado pelos leitores
+                <i class="ph-thin ph-sparkle"></i> Amado pelos leitores
             </div>
             <h2>Um lar para todo tipo de leitor</h2>
         </div>
@@ -187,7 +187,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="#" class="logo">
-                    <img src="{% static 'imgs/logo.png' %}" alt="Logo Starlit Chapters" class="footer-logo">
+                    <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="footer-logo">
                 </a>
                 <p class="brand-desc">Suas histórias. Sua jornada.<br>© 2026 Starlit Chapters.</p>
             </div>
@@ -230,8 +230,8 @@
                         </svg>
 
                         <!-- Ícone do X / Twitter em SVG -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
 
                         <!-- Ícone do Facebook em SVG -->
@@ -244,7 +244,7 @@
                         <p class="newsletter-desc">Receba atualizações e inspirações de leitura.</p>
                         <div class="newsletter-input">
                             <input type="email" placeholder="Seu email">
-                            <button><i data-lucide="chevron-right"></i></button>
+                            <button><i class="ph-thin ph-caret-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -254,7 +254,4 @@
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="{% static 'JS/scripts.js' %}"></script>
-    <script>
-        lucide.createIcons();
-    </script>
 </html>
