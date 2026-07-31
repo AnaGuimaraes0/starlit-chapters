@@ -31,7 +31,14 @@ h1, h2, h3, h4, .hero-title {
 
 h1, h2 {
     color: var(--gold);
-    background: linear-gradient(135deg, #F0DFB4  0%, #C8A96B 50%, #9C7B45 100%);
+    background: linear-gradient(
+        120deg, 
+        #FFF0D0 0%,   /* Ponto de luz champagne */
+        #E5C48A 25%,  /* Dourado claro */
+        #C8A96B 50%,  /* Tom base ouro */
+        #906F38 80%,  /* Sombra bronze profunda */
+        #E8CD96 100%  /* Brilho final suave */
+    );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -69,13 +76,13 @@ nav.scrolled {
 }
 
 .nav-logo {
-    height: 78px;
+    height: 60px;
     width: auto;
     object-fit: contain;
 }
 
 .footer-logo {
-    height: 96px;
+    height: 80px;
     width: auto;
     object-fit: contain;
 }
@@ -167,17 +174,19 @@ nav.scrolled {
 }
 
 .btn-primary {
-    background: linear-gradient(160deg, #F3E1B8 0%, #D4B37C 35%, #B8925A 70%, #93713D 100%);
-    color: #1a1305;
+    background: linear-gradient(160deg, #DFCA9E 0%, #C8A96B 50%, #A88B4D 100%);
+    color: #111827;
     border: none;
     font-weight: 600;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.35);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(160deg, #FBEFCF 0%, #E3C68F 35%, #C8A96B 70%, #A6824C 100%);
-    color: #1a1305;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 4px 10px rgba(0,0,0,0.4);
+    background: linear-gradient(160deg, #EAD7AC 0%, #D4B678 50%, #B59858 100%);
+    color: #111827;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -188,7 +197,9 @@ nav.scrolled {
 
 .btn-outline:hover {
     border-color: var(--gold);
-    color: var(--gold);
+    color: #FFF0D0;
+    background-color: rgba(200, 169, 107, 0.08); /* Fundo levemente dourado e translúcido */
+    box-shadow: 0 0 12px rgba(200, 169, 107, 0.15);
 }
 
 /* 
@@ -426,41 +437,62 @@ nav.scrolled {
 * ==========================================
 */
 .preview-section {
-    padding: 6rem 4rem;
     position: relative;
     background-color: var(--dark-bg);
-    background-image:
-        linear-gradient(to right, rgba(17, 24, 39, 0) 55%, rgba(17, 24, 39, 0.75) 100%),
-        url('../imgs/fundo_2.jpg');
+    
+    /* 1. Removi o gradiente para devolver 100% da nitidez e das cores originais da imagem */
+    background-image: url('../imgs/fundo_2.png');
+    
+    /* 2. Ajuste para preencher a tela sem dar aquele zoom exagerado */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    
+    /* 3. Usamos 'vw' (viewport width) na altura para manter a proporção retangular da imagem intacta */
+    width: 100%;
+    height: 35vw; 
+    min-height: 480px; /* Impede que fique espremido em telas muito pequenas */
 }
 
 .preview-content {
-    max-width: 350px;
-    padding: 2rem;
-    margin-right: 5%;
-    position: relative;
+    position: absolute;
+    top: 40%;
+    left: 61%; /* Inicia o texto logo após a tela do notebook */
+    transform: translateY(-50%); /* Centraliza perfeitamente no eixo vertical */
+    
+    width: 24%; /* Define a largura para acabar antes de encostar na pena */
+    min-width: 320px;
     z-index: 2;
+    padding: 0;
+    margin: 0;
+    font-style: normal;
 }
 
 .preview-content .section-eyebrow {
-    color: rgba(228, 210, 168, 0.6);
+    display: block;
+    font-family: var(--font-hero);
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #e4d2a8d9;
+
+    position: static;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
 }
 
 .preview-content h2 {
+    margin-top: 0;
     font-size: 3rem;
     margin-bottom: 1rem;
     line-height: 1.1;
 }
 
 .preview-content p {
-    color: rgba(228, 210, 168, 0.8);
+    color: rgba(228, 210, 168, 0.9); /* Aumentei um pouco a opacidade para leitura */
+    font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 2rem;
 }
@@ -542,12 +574,21 @@ nav.scrolled {
 
 .cta-banner {
     position: relative;
-    background-color: #0a0e18;
-    background-image: url('../imgs/fundo_3.jpg');
-    background-size: 100% auto;
-    background-position: center bottom;
+    background-color: var(--dark-bg);
+    background-image: url('../imgs/fundo_3.png');
+
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    padding: 7rem 2rem 6rem;
+
+    width: 100%;
+    aspect-ratio: 1920 / 480;
+    min-height: 340px; /* Garante que não fique muito pequeno em telas pequenas */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .footer-overlay {
@@ -564,20 +605,22 @@ nav.scrolled {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 600px;
+    max-width: 550px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0;
 }
 
 .cta-container h2 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
 }
 
 .cta-container p {
     color: rgba(228, 210, 168, 0.8);
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .footer-content {
