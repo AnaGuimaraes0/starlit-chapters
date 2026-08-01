@@ -20,10 +20,10 @@
             </a>
             <ul class="nav-links">
                 <li><a href="{% url 'landing_page' %}">Início</a></li>
-                <li><a href="#" class="active">Recursos</a></li>
-                <li><a href="#">Avaliações</a></li>
-                <li><a href="#">Clubes</a></li>
-                <li><a href="#">Sobre</a></li>
+                <li><a href="{% url 'recursos' %}" class="active">Recursos</a></li>
+                <li><a href="{% url 'avaliacoes' %}">Avaliações</a></li>
+                <li><a href="{% url 'clubes' %}">Clubes</a></li>
+                <li><a href="{% url 'sobre' %}">Sobre</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="#" class="login-link">Entrar</a>
@@ -32,21 +32,21 @@
         </nav>
 
         <!-- CABEÇALHO DA PÁGINA DE RECURSOS -->
-        <section class="section-header" style="padding-top: 9rem; padding-bottom: 2rem; max-width: 800px; margin: 0 auto; text-align: center;">
+        <section class="section-header resources-header">
             <div class="section-eyebrow">
                 <i class="ph-thin ph-sparkle"></i> RECURSOS
             </div>
-            <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.15; margin-bottom: 1.2rem;">
+            <h1 class="hero-title resources-title">
                 Tudo o que você precisa<br>para viver suas histórias.
             </h1>
-            <p style="color: rgba(228, 210, 168, 0.75); font-size: 1.05rem; max-width: 550px; margin: 0 auto;">
+            <p class="resources-subtitle">
                 Organize, acompanhe e compartilhe cada capítulo da sua jornada de leitura.
             </p>
         </section>
 
         <!-- GRID DE RECURSOS (8 CARDS) -->
-        <section class="features-section" style="padding: 2rem 4rem 6rem;">
-            <div class="cards-container" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3.5rem;">
+        <section class="features-section resources-features">
+            <div class="cards-container resources-grid">
                 
                 <!-- Card 1 -->
                 <div class="feature-card">
@@ -107,29 +107,26 @@
             </div>
 
             <!-- BANNER INFERIOR DA PÁGINA DE RECURSOS -->
-            <div class="feature-card" style="display: flex; justify-content: space-between; align-items: center; text-align: left; padding: 3rem 3.5rem; background-color: var(--dark-card); border: 1px solid rgba(228, 210, 168, 0.1); border-radius: 8px;">
-                <div style="display: flex; align-items: center; gap: 2.5rem;">
-                    <div style="color: var(--gold); font-size: 3.8rem; display: flex; align-items: center;">
-                        <i class="ph-thin ph-moon-stars"></i>
-                    </div>
-                    <div>
-                        <h2 style="font-size: 2.4rem; margin-bottom: 0.4rem; line-height: 1.15;">
+            <div class="feature-card resource-banner">
+                <div class="resource-banner-info">
+                    <div class="resource-banner-text">
+                        <h2>
                             Feito para leitores.<br>Pensado para você.
                         </h2>
-                        <p style="color: rgba(228, 210, 168, 0.7); font-size: 0.95rem; margin: 0; max-width: 480px;">
+                        <p>
                             Mais do que um organizador de livros, o Starlit Chapters é o seu companheiro em cada página virada.
                         </p>
                     </div>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary" style="white-space: nowrap; padding: 0.8rem 1.8rem;">Comece sua jornada ✦</a>
+                    <a href="#" class="btn btn-primary resource-banner-cta">Comece sua jornada ✦</a>
                 </div>
             </div>
         </section>
 
         <!-- FOOTER SECTION -->
         <footer class="footer-section">
-            <div class="footer-content" style="border-top: 1px solid rgba(228, 210, 168, 0.1);">
+            <div class="footer-content">
                 <div class="footer-brand">
                     <a href="#" class="logo">
                         <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="footer-logo">

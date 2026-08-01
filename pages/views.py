@@ -6,3 +6,12 @@ def landing_page(request):
 
 def recursos(request):
     return render(request, 'recursos.html')
+
+def avaliacoes(request):
+    return render(request, 'avaliacoes.html')
+
+def clubes(request):
+    return render(request, 'clubes.html')
+
+def sobre(request):
+    return render(request, 'sobre.html')

@@ -19,11 +19,11 @@
             <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="nav-logo">
         </a>
         <ul class="nav-links">
-            <li><a href="#" class="active">Início</a></li>
+            <li><a href="{% url 'landing_page' %}" class="active">Início</a></li>
             <li><a href="{% url 'recursos' %}">Recursos</a></li>
-            <li><a href="#">Avaliações</a></li>
-            <li><a href="#">Clubes</a></li>
-            <li><a href="#">Sobre</a></li>
+            <li><a href="{% url 'avaliacoes' %}">Avaliações</a></li>
+            <li><a href="{% url 'clubes' %}">Clubes</a></li>
+            <li><a href="{% url 'sobre' %}">Sobre</a></li>
         </ul>
         <div class="nav-actions">
             <a href="#" class="login-link">Entrar</a>

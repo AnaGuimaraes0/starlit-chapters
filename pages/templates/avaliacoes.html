@@ -1,0 +1,314 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Avaliações — Starlit Chapters</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <link rel="stylesheet" href="{% static 'CSS/estilo.css' %}">
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav>
+            <a href="{% url 'landing_page' %}" class="logo">
+                <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="nav-logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{% url 'landing_page' %}">Início</a></li>
+                <li><a href="{% url 'recursos' %}">Recursos</a></li>
+                <li><a href="{% url 'avaliacoes' %}" class="active">Avaliações</a></li>
+                <li><a href="{% url 'clubes' %}">Clubes</a></li>
+                <li><a href="{% url 'sobre' %}">Sobre</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="login-link">Entrar</a>
+                <a href="#" class="btn btn-primary">Criar Conta</a>
+            </div>
+        </nav>
+
+        <!-- CABEÇALHO DA PÁGINA DE AVALIAÇÕES -->
+        <section class="section-header reviews-header">
+            <div class="section-eyebrow">
+                <i class="ph-thin ph-sparkle"></i> AVALIAÇÕES
+            </div>
+            <h1 class="hero-title reviews-title">
+                Feito por leitores.<br>Amado por quem usa.
+            </h1>
+            <p class="reviews-subtitle">
+                Milhares de leitores já encontraram no Starlit Chapters o lugar perfeito para organizar suas leituras e compartilhar paixões.<br>Veja o que eles têm a dizer sobre nossa plataforma.
+            </p>
+
+            <!-- MÉTRICAS DE AVALIAÇÃO -->
+            <div class="reviews-metrics">
+                <!-- Nota Média -->
+                <div class="reviews-metric">
+                    <div class="reviews-metric-stars">★★★★★</div>
+                    <div>
+                        <div class="reviews-metric-value">4,9<span class="unit">/5</span></div>
+                        <div class="reviews-metric-label">Baseado em mais de 2.300 avaliações</div>
+                    </div>
+                </div>
+
+                <!-- Recomendação -->
+                <div class="reviews-metric">
+                    <div class="reviews-metric-heart">
+                        <i class="ph-thin ph-heart"></i>
+                    </div>
+                    <div>
+                        <div class="reviews-metric-value">98%</div>
+                        <div class="reviews-metric-label">dos usuários recomendam<br>o Starlit Chapters</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRID DE CARDS DE AVALIAÇÕES (3x2) -->
+        <section class="reviews-grid-section">
+            <div class="reviews-grid">
+                
+                <!-- Card 1 -->
+                <div class="feature-card review-card">
+                    <div>
+                        <div class="review-quote-mark">“</div>
+                        <div class="review-stars">★★★★★</div>
+                        <h3>Meu diário literário</h3>
+                        <p>
+                            Finalmente um lugar onde posso guardar todas as minhas leituras, escrever minhas impressões e acompanhar minha evolução como leitora. Simplesmente perfeito!
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Ana+Clara&background=24324A&color=C8A96B" alt="Ana Clara">
+                        <div class="author-info">
+                            <h4>Maria Eduarda</h4>
+                            <p>@mariaeduarda • leitora ávida</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card review-card">
+                    <div>
+                        <div class="review-quote-mark">“</div>
+                        <div class="review-stars">★★★★★</div>
+                        <h3>Organizado e lindo</h3>
+                        <p>
+                            A interface é linda, intuitiva e deixa tudo muito organizado. Uso todos os dias para registrar minhas leituras e acompanhar meus objetivos. Não fico mais sem!
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Lucas+B&background=24324A&color=C8A96B" alt="Lucas B.">
+                        <div class="author-info">
+                            <h4>Lucas B.</h4>
+                            <p>@lucasbooks_ • apaixonado por fantasia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card review-card">
+                    <div>
+                        <div class="review-quote-mark">“</div>
+                        <div class="review-stars">★★★★★</div>
+                        <h3>Encontrei minha comunidade</h3>
+                        <p>
+                            Os clubes de leitura me conectaram com pessoas incríveis que compartilham os mesmos gostos que eu. Já fiz amizades que levo para a vida toda!
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Mariana+L&background=24324A&color=C8A96B" alt="Mariana L.">
+                        <div class="author-info">
+                            <h4>Mariana L.</h4>
+                            <p>@marianalendo • membro de clubes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card review-card">
+                    <div>
+                        <div class="review-quote-mark">“</div>
+                        <div class="review-stars">★★★★★</div>
+                        <h3>Motivação todos os dias</h3>
+                        <p>
+                            Com as metas e desafios, minha leitura se tornou muito mais constante. Ver meu progresso me motiva a continuar!
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="review-avatar-initials">RP</div>
+                        <div class="author-info">
+                            <h4>Rafael P.</h4>
+                            <p>@rafaelpbooks • meta: 50 livros/ano</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="feature-card review-card">
+                    <div>
+                        <div class="review-quote-mark">“</div>
+                        <div class="review-stars">★★★★★</div>
+                        <h3>Resenhas que viram memórias</h3>
+                        <p>
+                            Amo poder escrever minhas resenhas e voltar nelas depois. É como folhear minhas próprias memórias literárias. Cada história deixa uma marca.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Juliana+M&background=24324A&color=C8A96B" alt="Juliana M.">
+                        <div class="author-info">
+                            <h4>Juliana M.</h4>
+                            <p>@juemlivros • colecionadora de histórias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="feature-card review-card">
+                    <div>
+                        <div class="review-quote-mark">“</div>
+                        <div class="review-stars">★★★★★</div>
+                        <h3>O lugar dos meus livros</h3>
+                        <p>
+                            Dois cliques e encontro tudo o que preciso. Biblioteca, wishlist, anotações... O Starlit Chapters se tornou meu cantinho favorito na internet.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="review-avatar-initials">VT</div>
+                        <div class="author-info">
+                            <h4>Vitória T.</h4>
+                            <p>@vitroialeituras • leitora desde sempre</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE APOIADORES / COMUNIDADE -->
+        <section class="reviews-supporters">
+            <div class="reviews-supporters-label">
+                ── APOIADO POR LEITORES E AMANTES DE LIVROS ──
+            </div>
+            <div class="reviews-supporters-logos">
+                <span class="supporter-logo supporter-logo--sans">
+                    <i class="ph-thin ph-heart"></i> booklovers
+                </span>
+                <span class="supporter-logo supporter-logo--serif">
+                    <i class="ph-thin ph-book-open"></i> leituras
+                </span>
+                <span class="supporter-logo--label">
+                    CLUBE DO LIVRO <span class="supporter-sublabel">BRASIL</span>
+                </span>
+                <span class="supporter-logo supporter-logo--italic">
+                    <i class="ph-thin ph-dragon"></i> fantasy readers
+                </span>
+                <span class="supporter-logo--bold">
+                    leitores <span class="supporter-badge">BR</span>
+                </span>
+            </div>
+        </section>
+
+        <!-- BANNER DE CTA FINAL COM A IMAGEM JANELA_AVALIACAO.PNG -->
+        <section class="reviews-cta-section">
+            <div class="reviews-cta-banner">
+                
+                <!-- Coluna 1: Texto principal -->
+                <div class="reviews-cta-text">
+                    <h2>
+                        Junte-se a milhares de leitores<br>e transforme sua jornada literária.
+                    </h2>
+                    <p>
+                        Organize, registre e compartilhe suas histórias<br>em um lugar feito para quem ama livros.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Botão e Subtexto -->
+                <div class="reviews-cta-action">
+                    <a href="#" class="btn btn-primary reviews-cta-btn">Comece sua jornada ✦</a>
+                    <span class="reviews-cta-note">
+                        É gratuito para começar.
+                    </span>
+                </div>
+
+                <!-- Coluna 3: Espaço para a arte da janela no fundo -->
+                <div class="reviews-cta-spacer"></div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER SECTION -->
+        <footer class="footer-section">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="footer-logo">
+                    </a>
+                    <p class="brand-desc">Suas histórias. Sua jornada.<br>© 2026 Starlit Chapters.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Produto</h4>
+                        <ul>
+                            <li><a href="#">Recursos</a></li>
+                            <li><a href="#">Sua Biblioteca</a></li>
+                            <li><a href="#">Resenhas</a></li>
+                            <li><a href="#">Clubes</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Comunidade</h4>
+                        <ul>
+                            <li><a href="#">Todos os Clubes</a></li>
+                            <li><a href="#">Discussões</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Eventos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Empresa</h4>
+                        <ul>
+                            <li><a href="#">Sobre Nós</a></li>
+                            <li><a href="#">Contato</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Termos de Serviço</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Siga-nos</h4>
+                        <div class="social-icons">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                            </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </div>
+                        <div class="newsletter">
+                            <p class="newsletter-title">Fique por dentro</p>
+                            <p class="newsletter-desc">Receba atualizações e inspirações de leitura.</p>
+                            <div class="newsletter-input">
+                                <input type="email" placeholder="Seu email">
+                                <button><i class="ph-thin ph-caret-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="{% static 'JS/scripts.js' %}"></script>
+    </body>
+</html>

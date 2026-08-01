@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sobre Nós — Starlit Chapters</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <link rel="stylesheet" href="{% static 'CSS/estilo.css' %}">
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav>
+            <a href="{% url 'landing_page' %}" class="logo">
+                <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="nav-logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{% url 'landing_page' %}">Início</a></li>
+                <li><a href="{% url 'recursos' %}">Recursos</a></li>
+                <li><a href="{% url 'avaliacoes' %}">Avaliações</a></li>
+                <li><a href="{% url 'clubes' %}">Clubes</a></li>
+                <li><a href="{% url 'sobre' %}" class="active">Sobre</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="login-link">Entrar</a>
+                <a href="#" class="btn btn-primary">Criar Conta</a>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION COM FUNDO_SOBRE.PNG -->
+        <section class="sobre-hero">
+            <div class="sobre-hero-inner">
+                <div class="sobre-hero-content">
+                    <div class="section-eyebrow">
+                        <i class="ph-thin ph-sparkle"></i> SOBRE NÓS
+                    </div>
+                    <h1 class="hero-title sobre-hero-title">
+                        Toda grande história começa com uma escolha: cuidar do que nos <em>transforma</em>.
+                    </h1>
+                    <p class="sobre-hero-lead">
+                        <strong>Starlit Chapters</strong> nasceu do amor pelos livros e da vontade de criar um lugar onde cada leitor pudesse se sentir em casa.
+                    </p>
+                    <p class="sobre-hero-desc">
+                        Mais do que uma plataforma, somos um refúgio digital para quem acredita que as histórias têm o poder de nos inspirar, conectar e mudar.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSSA HISTÓRIA -->
+        <section class="sobre-historia">
+            <div class="sobre-historia-card">
+
+                <!-- Imagem Lendo.png -->
+                <div class="sobre-historia-image">
+                    <img src="{% static 'imgs/lendo.png' %}" alt="Leitora lendo à luz de abajur">
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="sobre-historia-content">
+                    <div class="section-eyebrow">
+                        <i class="ph-thin ph-sparkle"></i> NOSSA HISTÓRIA
+                    </div>
+                    <h2>De uma leitora para leitores.</h2>
+                    <p>
+                        Starlit Chapters começou como um diário de leitura pessoal. Com o tempo, percebemos que outras pessoas também buscavam um lugar para guardar suas leituras, registrar suas impressões e encontrar pessoas que compartilham da mesma paixão.
+                    </p>
+                    <p>
+                        Foi assim que transformamos um sonho em realidade: criar um espaço acolhedor, bonito e funcional para leitores de todos os tipos.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TRÊS PILARES (PARA QUEM SERVIMOS, COMO OPERAMOS, NOSSOS VALORES) -->
+        <section class="sobre-pilares">
+            <div class="sobre-pilares-inner">
+
+                <!-- Coluna 1: Para quem servimos -->
+                <div class="feature-card sobre-pilar-card">
+                    <i class="ph-thin ph-users-three"></i>
+                    <span class="sobre-pilar-label">PARA QUEM SERVIMOS</span>
+                    <h3>Feito para todos que vivem histórias.</h3>
+                    <p>
+                        Se você ama livros, anota trechos que tocam, indica histórias para amigos, participa de clubes ou sonha em escrever um dia, este lugar é para você.
+                    </p>
+                    <p>
+                        De leitores casuais a devoradores de séries épicas, todos têm um lugar garantido aqui.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Como operamos -->
+                <div class="feature-card sobre-pilar-card">
+                    <i class="ph-thin ph-feather"></i>
+                    <span class="sobre-pilar-label">COMO OPERAMOS</span>
+                    <h3>Tecnologia com alma e propósito.</h3>
+                    <p>
+                        Desenvolvemos o Starlit Chapters com foco na experiência do leitor. Unimos design intuitivo, tecnologia confiável e uma curadoria de recursos que realmente fazem sentido no dia a dia de quem lê.
+                    </p>
+                    <p>
+                        Escutamos nossa comunidade e colocamos o leitor sempre em primeiro lugar.
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Nossos valores -->
+                <div class="feature-card sobre-pilar-card">
+                    <i class="ph-thin ph-heart"></i>
+                    <span class="sobre-pilar-label">NOSSOS VALORES</span>
+                    <h3>Histórias no centro de tudo.</h3>
+                    <ul class="sobre-pilar-list">
+                        <li><span>✦</span> Paixão por livros</li>
+                        <li><span>✦</span> Comunidade e pertencimento</li>
+                        <li><span>✦</span> Criatividade e inspiração</li>
+                        <li><span>✦</span> Respeito e acolhimento</li>
+                        <li><span>✦</span> Evolução constante</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- QUEM ESTÁ POR TRÁS (APENAS VOCÊ - FUNDADORA, CEO E DESENVOLVEDORA) -->
+        <section class="sobre-time">
+            <div class="sobre-time-inner">
+                <div class="section-eyebrow">
+                    <i class="ph-thin ph-sparkle"></i> QUEM ESTÁ POR TRÁS
+                </div>
+                <h2 class="sobre-time-title">Criada por quem é movida por histórias.</h2>
+
+                <!-- Card Centralizado Único -->
+                <div class="sobre-time-card-wrap">
+                    <div class="feature-card sobre-time-card">
+
+                        <!-- Avatar / Foto -->
+                        <div class="sobre-time-avatar">
+                            <img src="{% static 'imgs/lendo.png' %}" alt="Ana Clara">
+                        </div>
+
+                        <!-- Nome e Cargo -->
+                        <h3>Ana Clara</h3>
+                        <p class="sobre-time-role">Fundadora, CEO & Desenvolvedora</p>
+
+                        <!-- Descrição -->
+                        <p class="sobre-time-bio">
+                            Leitora desde sempre, sonhadora e apaixonada por criar experiências digitais encantadoras que conectam pessoas através dos livros e da tecnologia.
+                        </p>
+
+                        <!-- Redes Sociais: LinkedIn, Instagram, GitHub -->
+                        <div class="sobre-time-social">
+                            <a href="#" target="_blank" title="LinkedIn">
+                                <i class="ph-thin ph-linkedin-logo"></i>
+                            </a>
+                            <a href="#" target="_blank" title="Instagram">
+                                <i class="ph-thin ph-instagram-logo"></i>
+                            </a>
+                            <a href="#" target="_blank" title="GitHub">
+                                <i class="ph-thin ph-github-logo"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BANNER DE CONEXÃO & BLOG -->
+        <section class="sobre-conexao-section">
+            <div class="sobre-conexao-grid">
+
+                <!-- Bloco 1: Chamada CTA -->
+                <div class="sobre-conexao-block">
+                    <h3>Vamos continuar escrevendo juntos?</h3>
+                    <p>
+                        Faça parte da nossa comunidade e receba novidades, recomendações e conteúdos exclusivos toda semana.
+                    </p>
+                    <a href="#" class="btn btn-primary sobre-conexao-cta">Criar minha conta ✦</a>
+                </div>
+
+                <!-- Bloco 2: Leia nosso blog -->
+                <div class="sobre-conexao-block">
+                    <span class="sobre-conexao-label">LEIA NOSSO BLOG</span>
+                    <p>
+                        Reflexões, recomendações e tudo que nos inspira sobre livros e leitura.
+                    </p>
+                    <a href="#" class="sobre-conexao-link">Acessar blog →</a>
+                </div>
+
+                <!-- Bloco 3: Conecte-se conosco -->
+                <div>
+                    <span class="sobre-conexao-label">CONECTE-SE CONOSCO</span>
+                    <p>
+                        Siga o Starlit Chapters nas redes sociais e faça parte da nossa comunidade.
+                    </p>
+                    <div class="sobre-conexao-socials">
+                        <a href="#"><i class="ph-thin ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph-thin ph-tiktok-logo"></i></a>
+                        <a href="#"><i class="ph-thin ph-youtube-logo"></i></a>
+                        <a href="#"><i class="ph-thin ph-pinterest-logo"></i></a>
+                        <a href="#"><i class="ph-thin ph-discord-logo"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER SECTION -->
+        <footer class="footer-section">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="footer-logo">
+                    </a>
+                    <p class="brand-desc">Suas histórias. Sua jornada.<br>© 2026 Starlit Chapters.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Produto</h4>
+                        <ul>
+                            <li><a href="#">Recursos</a></li>
+                            <li><a href="#">Sua Biblioteca</a></li>
+                            <li><a href="#">Resenhas</a></li>
+                            <li><a href="#">Clubes</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Comunidade</h4>
+                        <ul>
+                            <li><a href="#">Todos os Clubes</a></li>
+                            <li><a href="#">Discussões</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Eventos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Empresa</h4>
+                        <ul>
+                            <li><a href="#">Sobre Nós</a></li>
+                            <li><a href="#">Contato</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Termos de Serviço</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Siga-nos</h4>
+                        <div class="social-icons">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                            </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </div>
+                        <div class="newsletter">
+                            <p class="newsletter-title">Fique por dentro</p>
+                            <p class="newsletter-desc">Receba atualizações e inspirações de leitura.</p>
+                            <div class="newsletter-input">
+                                <input type="email" placeholder="Seu email">
+                                <button><i class="ph-thin ph-caret-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="{% static 'JS/scripts.js' %}"></script>
+    </body>
+</html>
