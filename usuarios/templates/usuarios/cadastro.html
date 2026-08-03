@@ -1,34 +1,91 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Starlit Chapters</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-900 text-gray-100 min-h-screen flex items-center justify-center">
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Criar Conta — Starlit Chapters</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <link rel="stylesheet" href="{% static 'CSS/estilo.css' %}">
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav>
+            <a href="{% url 'landing_page' %}" class="logo">
+                <img src="{% static 'imgs/logo.svg' %}" alt="Logo Starlit Chapters" class="nav-logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{% url 'landing_page' %}">Início</a></li>
+                <li><a href="{% url 'recursos' %}">Recursos</a></li>
+                <li><a href="{% url 'avaliacoes' %}">Avaliações</a></li>
+                <li><a href="{% url 'clubes' %}">Clubes</a></li>
+                <li><a href="{% url 'sobre' %}">Sobre</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="{% url 'login' %}" class="login-link">Entrar</a>
+                <a href="{% url 'cadastro' %}" class="btn btn-primary">Criar Conta</a>
+            </div>
+        </nav>
 
-    <div class="bg-slate-800 p-8 rounded-lg shadow-xl w-full max-w-md border border-slate-700">
-        <h2 class="text-2xl font-bold text-center mb-2 text-indigo-400">Nova Leitora</h2>
-        <p class="text-center text-gray-400 mb-8">Crie seu perfil e comece a registrar seus surtos</p>
+        <!-- PÁGINA DE CADASTRO -->
+        <section class="auth-page">
 
-        <form method="POST" action="">
-            {% csrf_token %}
-            
-            <div class="space-y-4">
-                {{ form.as_p }}
+            <!-- COLUNA ESQUERDA: imagem + texto -->
+            <div class="auth-visual">
+                <div class="auth-visual-content">
+                    <h1>
+                        Comece sua<br>jornada literária.<br>
+                        <span class="accent">Crie sua conta.</span>
+                    </h1>
+                    <p>
+                        Junte-se ao Starlit Chapters e descubra um universo feito para leitores como você.
+                    </p>
+                </div>
             </div>
 
-            <button type="submit" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
-                Criar Conta
-            </button>
-        </form>
+            <!-- COLUNA DIREITA: formulário -->
+            <div class="auth-panel-wrap">
+                <div class="auth-panel">
+                    <div class="auth-panel-header">
+                        <i class="ph-thin ph-sparkle"></i>
+                        <h2>Criar sua conta</h2>
+                        <p>É rápido e gratuito! Preencha os campos abaixo para começar.</p>
+                    </div>
 
-        <p class="mt-6 text-center text-sm text-gray-400">
-            Já possui um diário? 
-            <a href="{% url 'login' %}" class="text-indigo-400 hover:text-indigo-300 font-medium">Faça login</a>
-        </p>
-    </div>
+                    <form method="POST" action="">
+                        {% csrf_token %}
 
-</body>
+                        <div class="auth-form-fields">
+                            {{ form.as_p }}
+                        </div>
+
+                        <label class="auth-checkbox">
+                            <input type="checkbox" name="aceite_termos" required>
+                            <span>Li e aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.</span>
+                        </label>
+
+                        <button type="submit" class="btn btn-primary auth-submit">Criar minha conta ✦</button>
+                    </form>
+
+                    <div class="auth-divider">ou cadastre-se com</div>
+
+                    <div class="auth-social">
+                        <a href="#" class="auth-social-btn"><i class="ph-thin ph-google-logo"></i> Google</a>
+                        <a href="#" class="auth-social-btn"><i class="ph-thin ph-apple-logo"></i> Apple</a>
+                        <a href="#" class="auth-social-btn"><i class="ph-thin ph-facebook-logo"></i> Facebook</a>
+                    </div>
+
+                    <p class="auth-footer-text">Já tem uma conta? <a href="{% url 'login' %}">Entrar</a></p>
+                </div>
+            </div>
+
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="{% static 'JS/scripts.js' %}"></script>
+    </body>
 </html>

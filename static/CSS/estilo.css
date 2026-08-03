@@ -1953,3 +1953,310 @@ nav.scrolled {
 .sobre-conexao-socials a {
     color: var(--gold);
 }
+
+/* 
+* ==========================================
+* PÁGINA DE CADASTRO (AUTH)
+* ==========================================
+*/
+.auth-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--dark-bg);
+    background-image: url('../imgs/fundo_cadrasto.png');
+    background-size: cover;
+    background-position: center 55%;
+}
+
+.login-page {
+    background-color: #00030e;
+    background-image:
+        linear-gradient(90deg, rgba(0,3,14,0) 60%, rgba(0,3,14,0.7) 80%, #00030e 95%),
+        linear-gradient(to bottom, rgba(0,3,14,0) 75%, #00030e 100%),
+        url('../imgs/fundo_login.png');
+    background-size: auto 100%, auto 100%, auto 100%;
+    background-position: left center, left center, left center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+.login-page .auth-visual {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 9rem;
+}
+
+.login-page .auth-visual-content h1 {
+    font-size: 3.6rem;
+}
+
+.login-page .auth-visual-content p {
+    font-size: 1.15rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth-visual {
+    flex: 1 1 55%;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 9rem 4rem 3rem;
+}
+
+.auth-visual-content {
+    max-width: 480px;
+}
+
+.auth-visual-content h1 {
+    font-size: 3rem;
+    line-height: 1.15;
+    margin-bottom: 1.3rem;
+    color: var(--light-text);
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: initial;
+}
+
+.auth-visual-content h1 .accent {
+    color: var(--gold);
+    font-style: normal;
+}
+
+.auth-visual-content p {
+    color: rgba(228, 210, 168, 0.8);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.auth-panel-wrap {
+    flex: 1 1 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+}
+
+.auth-panel {
+    width: 100%;
+    max-width: 460px;
+    background-color: #0b121e;
+    border: 1px solid rgba(228, 210, 168, 0.18);
+    border-radius: 16px;
+    padding: 2.6rem 3rem;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+}
+
+.auth-panel-header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+}
+
+.auth-panel-header i {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.auth-panel-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(228, 210, 168, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--gold);
+    font-size: 1.6rem;
+    background: rgba(11, 18, 30, 0.5);
+}
+
+.auth-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: -0.3rem 0 1.6rem;
+    font-size: 0.82rem;
+    font-family: var(--font-ui);
+}
+
+.auth-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(228, 210, 168, 0.75);
+    cursor: pointer;
+}
+
+.auth-options input {
+    accent-color: var(--gold);
+}
+
+.auth-options a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.auth-options a:hover {
+    text-decoration: underline;
+}
+
+.auth-panel-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-panel-header p {
+    font-size: 0.9rem;
+    color: rgba(228, 210, 168, 0.7);
+    line-height: 1.5;
+}
+
+.auth-form-fields p {
+    margin-bottom: 1.1rem;
+}
+
+.auth-form-fields label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: rgba(228, 210, 168, 0.75);
+    margin-bottom: 0.4rem;
+}
+
+.auth-form-fields input,
+.auth-form-fields select,
+.auth-form-fields textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(228, 210, 168, 0.2);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    color: var(--light-text);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-form-fields input:focus,
+.auth-form-fields select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200, 169, 107, 0.15);
+}
+
+.auth-form-fields input::placeholder {
+    color: rgba(228, 210, 168, 0.35);
+}
+
+.auth-form-fields .helptext {
+    display: block;
+    font-size: 0.72rem;
+    color: rgba(228, 210, 168, 0.45);
+    margin-top: 0.3rem;
+}
+
+.auth-form-fields .errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.3rem 0 0;
+    color: #e08a8a;
+    font-size: 0.78rem;
+}
+
+.auth-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: rgba(228, 210, 168, 0.75);
+    margin: 0.4rem 0 1.6rem;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    line-height: 1.4;
+}
+
+.auth-checkbox input {
+    margin-top: 0.2rem;
+    accent-color: var(--gold);
+}
+
+.auth-checkbox a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.auth-checkbox a:hover {
+    text-decoration: underline;
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.8rem 0 1.4rem;
+    color: rgba(228, 210, 168, 0.45);
+    font-size: 0.78rem;
+    font-family: var(--font-ui);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(228, 210, 168, 0.15);
+}
+
+.auth-social {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+}
+
+.auth-social-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem;
+    border: 1px solid rgba(228, 210, 168, 0.2);
+    border-radius: 6px;
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-family: var(--font-ui);
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.auth-social-btn:hover {
+    border-color: var(--gold);
+    background: rgba(200, 169, 107, 0.08);
+}
+
+.auth-footer-text {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(228, 210, 168, 0.6);
+    font-family: var(--font-ui);
+}
+
+.auth-footer-text a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+}
