@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
-# Importamos os formulários que criamos
-from .forms import RegistroUsuarioForm, LoginUsuarioForm
+from .forms import RegistroUsuarioForm, LoginUsuarioForm,  UserUpdateForm, PerfilUpdateForm
 
 # =================================================================
 # VIEW DE CADASTRO
@@ -67,3 +67,41 @@ def logout_usuario(request):
     logout(request)
     # Redireciona para a tela de login após sair
     return redirect('login')
+
+def perfil_usuario(request, username):
+    # Busca a usuária pelo username na URL; se não existir, retorna erro 404
+    usuario_perfil = get_object_or_404(User, username=username)
+    
+    contexto = {
+        'usuario_perfil': usuario_perfil,
+        'perfil': usuario_perfil.perfil,
+    }
+    return render(request, 'usuarios/perfil.html', contexto)
+
+
+# =================================================================
+# 2. CONFIGURAÇÕES / PERFIL (Privado)
+# =================================================================
+@login_required(login_url='login')
+def configuracoes(request):
+    if request.method == 'POST':
+        # Instanciamos os dois formulários com os dados enviados no POST
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        # request.FILES é OBRIGATÓRIO quando enviamos arquivos (como imagens de avatar)
+        p_form = PerfilUpdateForm(request.POST, request.FILES, instance=request.user.perfil)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, "Seu perfil foi atualizado com sucesso!")
+            return redirect('configuracoes')
+    else:
+        # Carrega os formulários preenchidos com os dados atuais do usuário
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = PerfilUpdateForm(instance=request.user.perfil)
+
+    contexto = {
+        'u_form': u_form,
+        'p_form': p_form,
+    }
+    return render(request, 'usuarios/configuracoes.html', contexto)

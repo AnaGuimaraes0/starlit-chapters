@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações de Conta - Starlit Chapters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto mt-10 p-6 max-w-2xl bg-slate-800 rounded-lg shadow-xl border border-slate-700">
+        <h2 class="text-2xl font-bold mb-6 text-indigo-400">Configurações de Perfil</h2>
+
+        <!-- O enctype="multipart/form-data" é OBRIGATÓRIO para envio de fotos/arquivos -->
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            
+            <h3 class="text-lg font-semibold text-gray-300">Dados da Conta</h3>
+            {{ u_form.as_p }}
+
+            <hr class="border-slate-700 my-4">
+
+            <h3 class="text-lg font-semibold text-gray-300">Perfil Literário</h3>
+            {{ p_form.as_p }}
+
+            <button type="submit" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition">
+                Salvar Alterações
+            </button>
+        </form>
+    </div>
+</body>
+</html>

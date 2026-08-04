@@ -57,6 +57,14 @@
                         <p>Acesse sua biblioteca e continue onde parou.</p>
                     </div>
 
+                    {% if messages %}
+                        <div class="auth-messages">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <form method="POST" action="">
                         {% csrf_token %}
 
@@ -69,7 +77,7 @@
                                 <input type="checkbox" name="lembrar_de_mim">
                                 Lembrar de mim
                             </label>
-                            <a href="#">Esqueci minha senha</a>
+                            <span class="auth-forgot">Esqueci minha senha</span>
                         </div>
 
                         <button type="submit" class="btn btn-primary auth-submit">Entrar na minha conta ✦</button>
