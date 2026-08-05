@@ -53,7 +53,7 @@ def login_usuario(request):
 
                 # Redirecionamento inteligente: verifica se existe um parâmetro 'next' na URL
                 redirect_to = request.GET.get('next', 'home')
-                return redirect(redirect_to)
+                return redirect('perfil_usuario', username=usuario.username)
     else:
         form = LoginUsuarioForm()
     

@@ -8,25 +8,13 @@ def landing_page(request):
     return render(request, 'landing.html')
 
 def recursos(request):
-    if not request.user.is_authenticated:
-        return redirect('landing')
-    
     return render(request, 'recursos.html')
 
 def avaliacoes(request):
-    if not request.user.is_authenticated:
-        return redirect('landing')
-    
     return render(request, 'avaliacoes.html')
 
 def clubes(request):
-    if not request.user.is_authenticated:
-        return redirect('landing')
-    
     return render(request, 'clubes.html')
 
 def sobre(request):
-    if not request.user.is_authenticated:
-        return redirect('landing')
-    
     return render(request, 'sobre.html')
