@@ -17,10 +17,9 @@ def cadastro(request):
         form = RegistroUsuarioForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Loga o usuário recém-criado imediatamente
             login(request, user)
             messages.success(request, f"Bem-vinda ao Starlit Chapters, {user.username}!")
-            return redirect('home')
+            return redirect('perfil_usuario', username=user.username)
     else:
         form = RegistroUsuarioForm()
         
@@ -51,8 +50,11 @@ def login_usuario(request):
                 # Cria a sessão (cookie) do usuário
                 login(request, usuario)
 
-                # Redirecionamento inteligente: verifica se existe um parâmetro 'next' na URL
-                redirect_to = request.GET.get('next', 'home')
+                next_url = request.GET.get('next')
+                if next_url:
+                    return redirect(next_url)
+                
+                # 2. Se fez login direto, vai para o seu Perfil!
                 return redirect('perfil_usuario', username=usuario.username)
     else:
         form = LoginUsuarioForm()
