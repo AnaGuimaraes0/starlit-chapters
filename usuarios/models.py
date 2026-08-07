@@ -48,6 +48,88 @@ class Perfil(models.Model):
     # Preferências de leitura (opcional para personalizações futuras)
     generos_favoritos = models.CharField(max_length=200, blank=True, help_text="Ex: Alta Fantasia, Romance Épico, Dark Romance")
 
+    # ---- Opções auxiliares (usadas nos campos abaixo) ----
+    SIM_NAO_CHOICES = [
+        ('sim', 'Sim'),
+        ('nao', 'Não'),
+    ]
+
+    # ---- Preferências de leitura ----
+    FORMATO_CHOICES = [
+        ('fisico', 'Físico'),
+        ('digital', 'Digital'),
+        ('fisico_digital', 'Físico e Digital'),
+        ('audiobook', 'Audiobook'),
+    ]
+    formato_leitura = models.CharField(
+        max_length=20, choices=FORMATO_CHOICES, default='fisico_digital',
+        verbose_name="Formato preferido"
+    )
+
+    MODO_LEITURA_CHOICES = [
+        ('claro', 'Claro'),
+        ('escuro', 'Escuro'),
+        ('noturno', 'Noturno'),
+        ('automatico', 'Automático (segue o sistema)'),
+    ]
+    modo_leitura = models.CharField(
+        max_length=20, choices=MODO_LEITURA_CHOICES, default='automatico',
+        verbose_name="Modo de leitura"
+    )
+
+    incluir_sugestoes = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Incluir sugestões de livros"
+    )
+
+    # ---- Notificações ----
+    notificacoes_email = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Notificações por e-mail"
+    )
+    lembretes_leitura = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Lembretes de leitura"
+    )
+    atualizacoes_comunidade = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Atualizações da comunidade"
+    )
+    novos_lancamentos = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Novos lançamentos e recomendações"
+    )
+
+    # ---- Privacidade ----
+    perfil_publico = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Perfil público"
+    )
+    mostrar_listas_publicamente = models.CharField(
+        max_length=3, choices=SIM_NAO_CHOICES, default='sim',
+        verbose_name="Mostrar listas publicamente"
+    )
+
+    HISTORICO_CHOICES = [
+        ('publico', 'Público'),
+        ('amigos', 'Apenas amigos'),
+        ('privado', 'Apenas para mim'),
+    ]
+    historico_leitura = models.CharField(
+        max_length=20, choices=HISTORICO_CHOICES, default='privado',
+        verbose_name="Histórico de leitura"
+    )
+
+    MENSAGENS_CHOICES = [
+        ('todos', 'Todos'),
+        ('amigos_seguidores', 'Amigos e seguidores'),
+        ('ninguem', 'Ninguém'),
+    ]
+    permitir_mensagens = models.CharField(
+        max_length=20, choices=MENSAGENS_CHOICES, default='amigos_seguidores',
+        verbose_name="Permitir mensagens"
+    )
+
     def __str__(self):
         return f"Perfil de {self.user.username}"
 

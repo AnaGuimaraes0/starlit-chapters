@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegistroUsuarioForm, LoginUsuarioForm,  UserUpdateForm, PerfilUpdateForm
+from core.models import ReadingEntry
 
 # =================================================================
 # VIEW DE CADASTRO
@@ -70,13 +71,37 @@ def logout_usuario(request):
     # Redireciona para a tela de login após sair
     return redirect('login')
 
+# =================================================================
+# VIEW DE PERFIL DE USUÁRIO
+# =================================================================
 def perfil_usuario(request, username):
     # Busca a usuária pelo username na URL; se não existir, retorna erro 404
     usuario_perfil = get_object_or_404(User, username=username)
     
     contexto = {
+        # --- DADOS DE USUÁRIO E PERFIL ---
         'usuario_perfil': usuario_perfil,
         'perfil': usuario_perfil.perfil,
+        
+        # --- CONTADORES (Inicializados como None para exibir o traço "-") ---
+        'livros_lidos_count': None, 
+        'resenhas_count': None,
+        'listas_count': None,
+        'clubes_count': None,
+        
+        # --- LEITURA ATUAL (None aciona o "Estado Vazio" visual) ---
+        'leitura_atual': None,
+        
+        # --- ESTATÍSTICAS DETALHADAS ---
+        'tempo_leitura_horas': None,
+        'paginas_lidas_count': None,
+        'media_paginas': None,
+        'genero_favorito': None,
+        'genero_favorito_count': None,
+        
+        # --- LISTAS (Inicializadas como listas vazias "[]") ---
+        'atividades': [],
+        'conquistas': [],
     }
     return render(request, 'usuarios/perfil.html', contexto)
 

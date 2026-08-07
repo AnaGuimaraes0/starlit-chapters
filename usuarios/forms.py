@@ -24,17 +24,41 @@ class LoginUsuarioForm(AuthenticationForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 border'
 
-# Form para alterar dados nativos do User (Nome, E-mail)
+# Form para alterar dados nativos do User (Nome, Usuário, E-mail)
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(required=True)
+    first_name = forms.CharField(
+        required=False, label="Nome de exibição",
+        help_text="Como seu nome aparece para outras pessoas na plataforma."
+    )
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'username', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'settings-input'
 
 
 # Form para alterar dados do Perfil (Bio, Avatar, Preferências)
 class PerfilUpdateForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['avatar', 'bio', 'generos_favoritos']
+        fields = [
+            'avatar', 'bio', 'generos_favoritos',
+            'formato_leitura', 'modo_leitura', 'incluir_sugestoes',
+            'notificacoes_email', 'lembretes_leitura', 'atualizacoes_comunidade', 'novos_lancamentos',
+            'perfil_publico', 'mostrar_listas_publicamente', 'historico_leitura', 'permitir_mensagens',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            if name == 'avatar':
+                field.widget.attrs['class'] = 'settings-file-input'
+            elif name == 'bio':
+                field.widget.attrs['class'] = 'settings-textarea'
+            else:
+                field.widget.attrs['class'] = 'settings-input'

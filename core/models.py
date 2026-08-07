@@ -49,18 +49,15 @@ class AlertaGatilho(models.Model):
 
 
 # =================================================================
-# 3. O LIVRO (Apenas dados imutáveis da obra)
+# 3. O LIVRO (Catálogo Colaborativo)
 # =================================================================
 class Livro(models.Model):
     titulo = models.CharField(max_length=200, verbose_name="Título")
     serie = models.CharField(max_length=200, blank=True, null=True, verbose_name="Série/Saga")
     volume = models.IntegerField(blank=True, null=True, verbose_name="Volume/Número")
     
-    # Agora a sinopse é estritamente o texto oficial do livro
     sinopse = models.TextField(verbose_name="Sinopse Oficial")
     num_paginas = models.IntegerField(blank=True, null=True, verbose_name="Número de Páginas")
-    
-    # Campo preparatório para a Fase 3 (API Google Books)
     isbn = models.CharField(max_length=13, unique=True, blank=True, null=True, verbose_name="ISBN")
     
     STATUS_SERIE_CHOICES = [
@@ -75,16 +72,30 @@ class Livro(models.Model):
         verbose_name="Status da Série"
     )
 
-    # Mantivemos a sua regra de ImageField para capas locais
     capa = models.ImageField(upload_to='capas_livros/', verbose_name="Capa do Livro")
     criado_at = models.DateTimeField(auto_now_add=True, verbose_name="Cadastrado em")
 
-    # RELACIONAMENTOS (Com blank=True adicionado para facilitar o preenchimento no Admin)
+    # ==========================================
+    # Estratégia de Moderação
+    # ==========================================
+    criado_por = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name="livros_cadastrados",
+        verbose_name="Cadastrado por"
+    )
+    aprovado = models.BooleanField(
+        default=False, 
+        verbose_name="Aprovado pela Moderação",
+        help_text="Se marcado, o livro aparecerá na busca global para todos os usuários."
+    )
+
+    # RELACIONAMENTOS
     autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True, related_name="livros", verbose_name="Autor")
     generos = models.ManyToManyField(Genero, related_name="livros", blank=True, verbose_name="Gêneros")
     tropes = models.ManyToManyField(Trope, related_name="livros", blank=True, verbose_name="Tropes")
-    
-    # NOVO RELACIONAMENTO: Conectando os Alertas ao Livro
     alertas_gatilho = models.ManyToManyField(AlertaGatilho, related_name="livros", blank=True, verbose_name="Alertas de Gatilho")
 
     def __str__(self):

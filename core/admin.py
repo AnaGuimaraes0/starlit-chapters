@@ -21,7 +21,6 @@ class TropeAdmin(admin.ModelAdmin):
     list_display = ('nome',)
     search_fields = ('nome',)
 
-# Seguindo o seu padrão para o novo Alerta de Gatilho
 @admin.register(AlertaGatilho)
 class AlertaGatilhoAdmin(admin.ModelAdmin):
     list_display = ('nome',)
@@ -29,30 +28,29 @@ class AlertaGatilhoAdmin(admin.ModelAdmin):
 
 
 # =================================================================
-# 2. MODELO DE LIVRO (Atualizado com seus novos campos)
+# 2. MODELO DE LIVRO (Atualizado para Moderação Avançada)
 # =================================================================
 @admin.register(Livro)
 class LivroAdmin(admin.ModelAdmin):
-    # Mantivemos as suas colunas e adicionamos o status_serie
-    list_display = ('titulo', 'autor', 'serie', 'status_serie', 'num_paginas', 'criado_at')
+    # 1. Adicionamos 'aprovado' e 'criado_por' para você ver quem enviou e se está liberado
+    list_display = ('titulo', 'autor', 'serie', 'status_serie', 'aprovado', 'criado_por', 'criado_at')
     
-    # Mantivemos seus filtros e adicionamos o status_serie
-    list_filter = ('status_serie', 'generos', 'tropes', 'autor')
+    # 2. TRUQUE DE PRODUTIVIDADE: Permite marcar a caixinha de 'aprovado' direto na lista, sem precisar abrir o cadastro do livro!
+    list_editable = ('aprovado',)
     
-    # Sua barra de pesquisa maravilhosa continua igual
+    # 3. Adicionamos 'aprovado' nos filtros para você achar rapidamente os livros pendentes
+    list_filter = ('aprovado', 'status_serie', 'generos', 'tropes', 'autor')
+    
+    # A sua barra de pesquisa e filtros horizontais continuam intactos
     search_fields = ('titulo', 'autor__nome')
-    
-    # Adicionamos os alertas_gatilho na caixa de busca dupla!
     filter_horizontal = ('generos', 'tropes', 'alertas_gatilho')
 
 
 # =================================================================
-# 3. MODELO DE DIÁRIO (Novo)
+# 3. MODELO DE DIÁRIO 
 # =================================================================
 @admin.register(ReadingEntry)
 class ReadingEntryAdmin(admin.ModelAdmin):
-    # Exibe quem leu, qual livro, o status, a nota e as datas
     list_display = ('user', 'livro', 'status', 'avaliacao', 'data_inicio', 'data_fim')
     list_filter = ('status', 'avaliacao')
-    # Permite buscar pelo nome do usuário ou título do livro
     search_fields = ('user__username', 'livro__titulo')
