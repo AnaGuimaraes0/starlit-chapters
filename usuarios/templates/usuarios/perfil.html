@@ -1,488 +1,274 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de {{ usuario_perfil.username }} - Starlit Chapters</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- CSS do Projeto -->
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-</head>
-<body class="profile-body">
+{% extends 'core/base.html' %}
 
-    <!-- NAVBAR -->
-    <nav class="profile-navbar">
-        <a href="{% url 'home' %}" class="logo">
-            <img src="{% static 'imgs/logo.svg' %}" alt="Starlit Chapters Logo" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        </a>
+{% block title %}Perfil de {{ usuario_perfil.username }} - Starlit Chapters{% endblock %}
+{% block sidebar_profile_active %}active{% endblock %}
 
-        <!-- Ações do Usuário na Navbar -->
-        <div class="nav-actions">
-            <button class="nav-icon-btn" aria-label="Buscar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </button>
-            <button class="nav-icon-btn" aria-label="Notificações">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-            </button>
-
-            {% if request.user.is_authenticated %}
-                <div class="user-avatar-menu">
-                    <button type="button" class="nav-user-avatar-btn" aria-haspopup="true" aria-expanded="false" onclick="toggleUserMenu(this)">
-                        {% if perfil.avatar and perfil.avatar.url %}
-                            <img src="{{ perfil.avatar.url }}" alt="{{ usuario_perfil.username }}" class="nav-user-avatar"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        {% endif %}
-                        <div class="nav-user-avatar-placeholder" {% if perfil.avatar and perfil.avatar.url %}style="display:none;"{% endif %}>
-                            {{ usuario_perfil.username|slice:":1"|upper }}
-                        </div>
-                    </button>
-
-                    <div class="nav-user-dropdown">
-                        <div class="nav-user-dropdown-header">
-                            <span class="nav-user-dropdown-name">{{ usuario_perfil.username }}</span>
-                        </div>
-                        <a href="{% url 'perfil_usuario' usuario_perfil.username %}" class="nav-user-dropdown-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                            Meu perfil
-                        </a>
-                        <a href="{% url 'configuracoes' %}" class="nav-user-dropdown-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                            Configurações
-                        </a>
-                        <div class="nav-user-dropdown-divider"></div>
-                        <form action="{% url 'logout' %}" method="post" class="nav-user-dropdown-form">
-                            {% csrf_token %}
-                            <button type="submit" class="nav-user-dropdown-item nav-user-dropdown-logout">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                                Sair
-                            </button>
-                        </form>
-                    </div>
+{% block content %}
+    <section class="profile-header-card">
+        <div class="profile-header-top">
+            <div class="profile-avatar-wrapper">
+                {% if perfil.avatar and perfil.avatar.url %}
+                    <img src="{{ perfil.avatar.url }}" alt="{{ usuario_perfil.username }}" class="profile-avatar-img"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                {% endif %}
+                <div class="profile-avatar-placeholder" {% if perfil.avatar and perfil.avatar.url %}style="display:none;"{% endif %}>
+                    {{ usuario_perfil.username|slice:":1"|upper }}
                 </div>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn btn-outline">Entrar</a>
+
+                {% if request.user == usuario_perfil %}
+                    <a href="{% url 'configuracoes' %}" class="profile-avatar-edit-btn" title="Editar foto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="profile-user-info">
+                <div class="profile-name-row">
+                    <h1 class="profile-display-name">
+                        {{ usuario_perfil.get_full_name|default:usuario_perfil.username }}
+                    </h1>
+                    <span class="profile-star-badge">✦</span>
+                </div>
+                <p class="profile-username">@{{ usuario_perfil.username }}</p>
+
+                <div class="profile-meta-details">
+                    {% if perfil.localizacao %}
+                        <span class="meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            {{ perfil.localizacao }}
+                        </span>
+                        <span class="meta-separator">•</span>
+                    {% endif %}
+                    <span class="meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Entrou em {{ usuario_perfil.date_joined|date:"F \d\e Y"|default:"-" }}
+                    </span>
+                </div>
+            </div>
+
+            {% if request.user == usuario_perfil %}
+                <div class="profile-header-actions">
+                    <a href="{% url 'configuracoes' %}" class="btn btn-outline btn-edit-profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        Editar perfil
+                    </a>
+                </div>
             {% endif %}
         </div>
-    </nav>
 
-    <!-- LAYOUT PRINCIPAL (SIDEBAR + CONTEÚDO) -->
-    <div class="profile-layout">
-
-        <!-- BARRA LATERAL (SIDEBAR) -->
-        <aside class="profile-sidebar">
-            <ul class="sidebar-menu">
-                <li class="active">
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        <span>Meu perfil</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'home' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                        <span>Biblioteca</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                        <span>Resenhas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-                        <span>Listas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                        <span>Metas de leitura</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        <span>Clubes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                        <span>Favoritos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 4-2 6-4 7"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 4-2 6-4 7"></path></svg>
-                        <span>Citações</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-                        <span>Conquistas</span>
-                    </a>
-                </li>
-                {% if request.user == usuario_perfil %}
-                <li>
-                    <a href="{% url 'configuracoes' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                        <span>Configurações</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </aside>
-
-        <!-- ÁREA DE CONTEÚDO PRINCIPAL -->
-        <main class="profile-main">
-
-            <!-- CARD DE CABEÇALHO DO PERFIL -->
-            <section class="profile-header-card">
-                <div class="profile-header-top">
-                    <!-- AVATAR FIXADO CÍRCULO -->
-                    <div class="profile-avatar-wrapper">
-                        {% if perfil.avatar and perfil.avatar.url %}
-                            <img src="{{ perfil.avatar.url }}" alt="{{ usuario_perfil.username }}" class="profile-avatar-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        {% endif %}
-                        <div class="profile-avatar-placeholder" {% if perfil.avatar and perfil.avatar.url %}style="display:none;"{% endif %}>
-                            {{ usuario_perfil.username|slice:":1"|upper }}
-                        </div>
-
-                        {% if request.user == usuario_perfil %}
-                            <a href="{% url 'configuracoes' %}" class="profile-avatar-edit-btn" title="Editar foto">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                            </a>
-                        {% endif %}
-                    </div>
-
-                    <!-- INFORMAÇÕES DO USUÁRIO -->
-                    <div class="profile-user-info">
-                        <div class="profile-name-row">
-                            <h1 class="profile-display-name">
-                                {{ usuario_perfil.get_full_name|default:usuario_perfil.username }}
-                            </h1>
-                            <span class="profile-star-badge">✦</span>
-                        </div>
-                        <p class="profile-username">@{{ usuario_perfil.username }}</p>
-                        
-                        <div class="profile-meta-details">
-                            {% if perfil.localizacao %}
-                                <span class="meta-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                    {{ perfil.localizacao }}
-                                </span>
-                                <span class="meta-separator">•</span>
-                            {% endif %}
-                            <span class="meta-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                                Entrou em {{ usuario_perfil.date_joined|date:"F \d\e Y"|default:"-" }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- BOTÃO DE EDITAR PERFIL -->
-                    {% if request.user == usuario_perfil %}
-                        <div class="profile-header-actions">
-                            <a href="{% url 'configuracoes' %}" class="btn btn-outline btn-edit-profile">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                Editar perfil
-                            </a>
-                        </div>
-                    {% endif %}
-                </div>
-
-                <!-- BARRA DE ESTATÍSTICAS RÁPIDAS -->
-                <div class="profile-stats-bar">
-                    <div class="stat-item">
-                        <span class="stat-number">{{ livros_lidos_count|default:"-" }}</span>
-                        <span class="stat-label">Livros lidos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">{{ resenhas_count|default:"-" }}</span>
-                        <span class="stat-label">Resenhas</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">{{ listas_count|default:"-" }}</span>
-                        <span class="stat-label">Listas criadas</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">{{ clubes_count|default:"-" }}</span>
-                        <span class="stat-label">Clubes ativos</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- DUAS COLUNAS: SOBRE VOCÊ & LEITURA ATUAL -->
-            <div class="profile-grid-two-col">
-                
-                <!-- CARD: SOBRE VOCÊ -->
-                <div class="profile-card">
-                    <div class="card-header">
-                        <h2>Sobre você</h2>
-                    </div>
-                    <div class="card-body">
-                        <p class="about-text">
-                            {% if perfil.bio %}
-                                {{ perfil.bio }}
-                            {% else %}
-                                Nenhuma bio adicionada ainda.
-                            {% endif %}
-                        </p>
-
-                        {% if perfil.generos_favoritos %}
-                            <div class="favorite-genres">
-                                {% for genero in perfil.generos_favoritos.split %}
-                                    <span class="genre-badge">{{ genero }}</span>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
-                        {% if request.user == usuario_perfil %}
-                            <a href="{% url 'configuracoes' %}" class="btn btn-outline btn-sm btn-edit-bio">Editar bio</a>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- CARD: LEITURA ATUAL -->
-                <div class="profile-card">
-                    <div class="card-header space-between">
-                        <h2>Leitura atual</h2>
-                        {% if leitura_atual %}
-                            <button class="card-more-btn" aria-label="Opções">•••</button>
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        {% if leitura_atual %}
-                            <div class="current-reading-content">
-                                <div class="book-cover-wrap">
-                                    {% if leitura_atual.capa %}
-                                        <img src="{{ leitura_atual.capa.url }}" alt="{{ leitura_atual.titulo }}" class="book-cover-img">
-                                    {% else %}
-                                        <div class="book-cover-placeholder">
-                                            <span class="book-cover-title">{{ leitura_atual.titulo }}</span>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <div class="book-details">
-                                    <h3 class="book-title">{{ leitura_atual.titulo }}</h3>
-                                    <p class="book-author">{{ leitura_atual.autor }}</p>
-                                    
-                                    <div class="reading-progress-wrap">
-                                        <div class="progress-bar-container">
-                                            <div class="progress-bar-fill" style="width: {{ leitura_atual.progresso|default:'0' }}%;"></div>
-                                        </div>
-                                        <span class="progress-percentage">{{ leitura_atual.progresso|default:'0' }}%</span>
-                                    </div>
-
-                                    <a href="{% url 'home' %}" class="btn btn-outline btn-sm btn-library">Ver na biblioteca</a>
-                                </div>
-                            </div>
-                        {% else %}
-                            <!-- ESTADO VAZIO: NENHUM LIVRO EM LEITURA (OPÇÃO A) -->
-                            <div class="empty-state-card">
-                                <div class="empty-state-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                                </div>
-                                <p class="empty-state-text">Nenhum livro em leitura no momento.</p>
-                                {% if request.user == usuario_perfil %}
-                                    <a href="{% url 'home' %}" class="btn btn-outline btn-sm">+ Adicionar livro</a>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-
+        <div class="profile-stats-bar">
+            <div class="stat-item">
+                <span class="stat-number">{{ livros_lidos_count|default:"-" }}</span>
+                <span class="stat-label">Livros lidos</span>
             </div>
-
-            <!-- SEÇÃO: ESTATÍSTICAS DE LEITURA -->
-            <section class="profile-section">
-                <div class="section-header-row">
-                    <h2>Estatísticas de leitura</h2>
-                    <div class="filter-dropdown">
-                        <select class="custom-select">
-                            <option>Este ano</option>
-                            <option>Geral</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="stats-cards-grid">
-                    <div class="stat-box">
-                        <div class="stat-box-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        </div>
-                        <div class="stat-box-content">
-                            <span class="stat-box-title">Tempo de leitura</span>
-                            <span class="stat-box-value">{% if tempo_leitura_horas %}{{ tempo_leitura_horas }}h{% else %}-{% endif %}</span>
-                            <span class="stat-box-sub">Este ano</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-box-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                        </div>
-                        <div class="stat-box-content">
-                            <span class="stat-box-title">Páginas lidas</span>
-                            <span class="stat-box-value">{{ paginas_lidas_count|default:"-" }}</span>
-                            <span class="stat-box-sub">Este ano</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-box-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        </div>
-                        <div class="stat-box-content">
-                            <span class="stat-box-title">Média por livro</span>
-                            <span class="stat-box-value">{{ media_paginas|default:"-" }}</span>
-                            <span class="stat-box-sub">{% if media_paginas %}páginas{% else %}-{% endif %}</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-box-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-                        </div>
-                        <div class="stat-box-content">
-                            <span class="stat-box-title">Gênero favorito</span>
-                            <span class="stat-box-value highlight-gold">{{ genero_favorito|default:"-" }}</span>
-                            <span class="stat-box-sub">{% if genero_favorito_count %}{{ genero_favorito_count }} livros{% else %}-{% endif %}</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- DUAS COLUNAS: ATIVIDADE RECENTE & CONQUISTAS -->
-            <div class="profile-grid-two-col">
-
-                <!-- CARD: ATIVIDADE RECENTE -->
-                <div class="profile-card">
-                    <div class="card-header space-between">
-                        <h2>Atividade recente</h2>
-                        {% if atividades %}
-                            <a href="#" class="view-all-link">Ver tudo</a>
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        {% if atividades %}
-                            <ul class="activity-list">
-                                {% for atividade in atividades %}
-                                    <li class="activity-item">
-                                        <div class="activity-icon-thumb">
-                                            <div class="activity-badge-icon">✦</div>
-                                        </div>
-                                        <div class="activity-text">
-                                            <p>{{ atividade.descricao }}</p>
-                                            <span class="activity-time">{{ atividade.data|timesince }} atrás</span>
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <div class="empty-state-card">
-                                <p class="empty-state-text">Nenhuma atividade recente registrada.</p>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- CARD: CONQUISTAS -->
-                <div class="profile-card">
-                    <div class="card-header space-between">
-                        <h2>Conquistas</h2>
-                        {% if conquistas %}
-                            <a href="#" class="view-all-link">Ver todas</a>
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        {% if conquistas %}
-                            <ul class="achievements-list">
-                                {% for conquista in conquistas %}
-                                    <li class="achievement-item">
-                                        <div class="achievement-badge gold-ring">
-                                            <span class="badge-icon">✦</span>
-                                        </div>
-                                        <div class="achievement-info">
-                                            <h3>{{ conquista.titulo }}</h3>
-                                            <p>{{ conquista.descricao }}</p>
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <div class="empty-state-card">
-                                <p class="empty-state-text">Nenhuma conquista desbloqueada ainda.</p>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-
+            <div class="stat-item">
+                <span class="stat-number">{{ resenhas_count|default:"-" }}</span>
+                <span class="stat-label">Resenhas</span>
             </div>
-
-        </main>
-    </div>
-
-    <!-- RODAPÉ MINIMALISTA -->
-    <footer class="profile-footer">
-        <div class="profile-footer-content">
-            <p class="copyright">&copy; 2026 Starlit Chapters. Todos os direitos reservados.</p>
-            <div class="footer-links-inline">
-                <a href="#">Termos de Uso</a>
-                <a href="#">Privacidade</a>
-                <a href="#">Contato</a>
+            <div class="stat-item">
+                <span class="stat-number">{{ listas_count|default:"-" }}</span>
+                <span class="stat-label">Listas criadas</span>
             </div>
-            <div class="social-icons-inline">
-                <a href="#" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-                <a href="#" aria-label="TikTok">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-                </a>
-                <a href="#" aria-label="Pinterest">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 20l4-9"></path><path d="M10.7 13c.4 1.2 1.3 2 2.8 2 2.2 0 4.5-2 4.5-5a4.5 4.5 0 0 0-9 0c0 1.2.4 2.3 1.2 3.1"></path></svg>
-                </a>
+            <div class="stat-item">
+                <span class="stat-number">{{ clubes_count|default:"-" }}</span>
+                <span class="stat-label">Clubes ativos</span>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        function toggleUserMenu(btn) {
-            const wrapper = btn.closest('.user-avatar-menu');
-            const isOpen = wrapper.classList.toggle('open');
-            btn.setAttribute('aria-expanded', isOpen);
-        }
+    <div class="profile-grid-two-col">
+        <div class="profile-card">
+            <div class="card-header">
+                <h2>Sobre você</h2>
+            </div>
+            <div class="card-body">
+                <p class="about-text">
+                    {% if perfil.bio %}
+                        {{ perfil.bio }}
+                    {% else %}
+                        Nenhuma bio adicionada ainda.
+                    {% endif %}
+                </p>
 
-        document.addEventListener('click', function (e) {
-            document.querySelectorAll('.user-avatar-menu.open').forEach(function (wrapper) {
-                if (!wrapper.contains(e.target)) {
-                    wrapper.classList.remove('open');
-                    wrapper.querySelector('.nav-user-avatar-btn').setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
+                {% if perfil.generos_favoritos %}
+                    <div class="favorite-genres">
+                        {% for genero in perfil.generos_favoritos.split %}
+                            <span class="genre-badge">{{ genero }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.user-avatar-menu.open').forEach(function (wrapper) {
-                    wrapper.classList.remove('open');
-                    wrapper.querySelector('.nav-user-avatar-btn').setAttribute('aria-expanded', 'false');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                {% if request.user == usuario_perfil %}
+                    <a href="{% url 'configuracoes' %}" class="btn btn-outline btn-sm btn-edit-bio">Editar bio</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-header space-between">
+                <h2>Leitura atual</h2>
+                {% if leitura_atual %}
+                    <button class="card-more-btn" aria-label="Opções">•••</button>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if leitura_atual %}
+                    <div class="current-reading-content">
+                        <div class="book-cover-wrap">
+                            {% if leitura_atual.capa %}
+                                <img src="{{ leitura_atual.capa.url }}" alt="{{ leitura_atual.titulo }}" class="book-cover-img">
+                            {% else %}
+                                <div class="book-cover-placeholder">
+                                    <span class="book-cover-title">{{ leitura_atual.titulo }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="book-details">
+                            <h3 class="book-title">{{ leitura_atual.titulo }}</h3>
+                            <p class="book-author">{{ leitura_atual.autor }}</p>
+
+                            <div class="reading-progress-wrap">
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: {{ leitura_atual.progresso|default:'0' }}%;"></div>
+                                </div>
+                                <span class="progress-percentage">{{ leitura_atual.progresso|default:'0' }}%</span>
+                            </div>
+
+                            <a href="{% url 'home' %}" class="btn btn-outline btn-sm btn-library">Ver na biblioteca</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="empty-state-card">
+                        <div class="empty-state-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                        <p class="empty-state-text">Nenhum livro em leitura no momento.</p>
+                        {% if request.user == usuario_perfil %}
+                            <a href="{% url 'buscar_livro' %}" class="btn btn-outline btn-sm">+ Adicionar livro</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <section class="profile-section">
+        <div class="section-header-row">
+            <h2>Estatísticas de leitura</h2>
+            <div class="filter-dropdown">
+                <select class="custom-select">
+                    <option>Este ano</option>
+                    <option>Geral</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="stats-cards-grid">
+            <div class="stat-box">
+                <div class="stat-box-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="stat-box-content">
+                    <span class="stat-box-title">Tempo de leitura</span>
+                    <span class="stat-box-value">{% if tempo_leitura_horas %}{{ tempo_leitura_horas }}h{% else %}-{% endif %}</span>
+                    <span class="stat-box-sub">Este ano</span>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-box-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <div class="stat-box-content">
+                    <span class="stat-box-title">Páginas lidas</span>
+                    <span class="stat-box-value">{{ paginas_lidas_count|default:"-" }}</span>
+                    <span class="stat-box-sub">Este ano</span>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-box-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+                <div class="stat-box-content">
+                    <span class="stat-box-title">Média por livro</span>
+                    <span class="stat-box-value">{{ media_paginas|default:"-" }}</span>
+                    <span class="stat-box-sub">{% if media_paginas %}páginas{% else %}-{% endif %}</span>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-box-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                </div>
+                <div class="stat-box-content">
+                    <span class="stat-box-title">Gênero favorito</span>
+                    <span class="stat-box-value highlight-gold">{{ genero_favorito|default:"-" }}</span>
+                    <span class="stat-box-sub">{% if genero_favorito_count %}{{ genero_favorito_count }} livros{% else %}-{% endif %}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="profile-grid-two-col">
+        <div class="profile-card">
+            <div class="card-header space-between">
+                <h2>Atividade recente</h2>
+                {% if atividades %}
+                    <a href="#" class="view-all-link">Ver tudo</a>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if atividades %}
+                    <ul class="activity-list">
+                        {% for atividade in atividades %}
+                            <li class="activity-item">
+                                <div class="activity-icon-thumb">
+                                    <div class="activity-badge-icon">✦</div>
+                                </div>
+                                <div class="activity-text">
+                                    <p>{{ atividade.descricao }}</p>
+                                    <span class="activity-time">{{ atividade.data|timesince }} atrás</span>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="empty-state-card">
+                        <p class="empty-state-text">Nenhuma atividade recente registrada.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-header space-between">
+                <h2>Conquistas</h2>
+                {% if conquistas %}
+                    <a href="#" class="view-all-link">Ver todas</a>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if conquistas %}
+                    <ul class="achievements-list">
+                        {% for conquista in conquistas %}
+                            <li class="achievement-item">
+                                <div class="achievement-badge gold-ring">
+                                    <span class="badge-icon">✦</span>
+                                </div>
+                                <div class="achievement-info">
+                                    <h3>{{ conquista.titulo }}</h3>
+                                    <p>{{ conquista.descricao }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="empty-state-card">
+                        <p class="empty-state-text">Nenhuma conquista desbloqueada ainda.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

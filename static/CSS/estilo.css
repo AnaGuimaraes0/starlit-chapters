@@ -3429,3 +3429,151 @@ select.settings-input {
         grid-template-columns: 1fr;
     }
 }
+
+/* =================================================================
+   BUSCAR / CADASTRAR LIVRO
+   ================================================================= */
+.book-search-bar {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.book-search-input {
+    flex: 1;
+}
+
+.book-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+}
+
+.book-result-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(228, 210, 168, 0.15);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.book-result-cover {
+    width: 100%;
+    height: 190px;
+    margin-bottom: 0.4rem;
+}
+
+.book-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.book-result-cover .book-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-pending-badge {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    color: #d9b366;
+    background: rgba(200, 169, 107, 0.12);
+    border: 1px solid rgba(200, 169, 107, 0.3);
+    border-radius: 20px;
+    padding: 0.15rem 0.6rem;
+}
+
+.settings-field-hint {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    color: rgba(228, 210, 168, 0.45);
+    margin-top: 0.3rem;
+}
+
+.settings-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(228, 210, 168, 0.15);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.settings-checkbox-group ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.settings-checkbox-group li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.settings-checkbox-group label {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: rgba(228, 210, 168, 0.8);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.settings-checkbox-group input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+/* Input de arquivo visível (ex: capa do livro) — diferente do avatar,
+   que fica escondido atrás de um botão "Alterar foto" */
+.settings-file {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(228, 210, 168, 0.2);
+    border-radius: 6px;
+    padding: 0.55rem 0.8rem;
+    color: rgba(228, 210, 168, 0.65);
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+
+.settings-file::file-selector-button {
+    background: var(--gold);
+    color: #12192A;
+    border: none;
+    border-radius: 5px;
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-right: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.settings-file::file-selector-button:hover {
+    background: #d9b877;
+}
+
+/* Legibilidade das opções do <select> — o navegador controla boa parte
+   deste estilo, mas isso cobre a maioria dos navegadores baseados em Chromium/Firefox */
+.settings-input option,
+select option {
+    background-color: #16202F;
+    color: #E4D2A8;
+}

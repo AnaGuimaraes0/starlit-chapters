@@ -12,4 +12,9 @@ urlpatterns = [
     # Rota principal para o Fichário de Leitura, com ou sem id do livro
     path('lendo-agora/', views.fichario_leitura_view, name='ficha-leitura-sem-id'),
     path('lendo-agora/<int:livro_id>/', views.fichario_leitura_view, name='ficha-leitura'),
+
+    # Cadastro colaborativo de livros e resenhas (sem precisar do admin)
+    path('buscar-livro/', views.buscar_livro_view, name='buscar_livro'),
+    path('cadastrar-livro/', views.cadastrar_livro_view, name='cadastrar_livro'),
+    path('resenha/<int:livro_id>/', views.escrever_resenha_view, name='escrever_resenha'),
 ]

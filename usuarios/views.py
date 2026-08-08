@@ -77,20 +77,27 @@ def logout_usuario(request):
 def perfil_usuario(request, username):
     # Busca a usuária pelo username na URL; se não existir, retorna erro 404
     usuario_perfil = get_object_or_404(User, username=username)
-    
+
+    diarios_lidos = ReadingEntry.objects.filter(user=usuario_perfil, status='lido')
+
+    # Livro que a usuária está lendo agora (entrada mais recente com status "lendo")
+    entrada_lendo = ReadingEntry.objects.filter(
+        user=usuario_perfil, status='lendo'
+    ).order_by('-atualizado_em').first()
+
     contexto = {
         # --- DADOS DE USUÁRIO E PERFIL ---
         'usuario_perfil': usuario_perfil,
         'perfil': usuario_perfil.perfil,
         
-        # --- CONTADORES (Inicializados como None para exibir o traço "-") ---
-        'livros_lidos_count': None, 
-        'resenhas_count': None,
-        'listas_count': None,
-        'clubes_count': None,
+        # --- CONTADORES ---
+        'livros_lidos_count': diarios_lidos.count(),
+        'resenhas_count': diarios_lidos.exclude(resenha__isnull=True).exclude(resenha__exact='').count(),
+        'listas_count': None,   # app de Listas ainda não existe
+        'clubes_count': None,   # app de Clubes ainda não existe
         
         # --- LEITURA ATUAL (None aciona o "Estado Vazio" visual) ---
-        'leitura_atual': None,
+        'leitura_atual': entrada_lendo.livro if entrada_lendo else None,
         
         # --- ESTATÍSTICAS DETALHADAS ---
         'tempo_leitura_horas': None,
